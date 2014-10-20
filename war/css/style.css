@@ -1,0 +1,28 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.help-block {
+	font-size:small;
+}
+
+.well {
+	background-color: #fbfbfb;
+}
+
+.requis {
+	color: #428BCA;
+	margin-left: 2px;
+}
+
+.login {
+  color: #428BCA;
+}
+
+.signInFooter {
+	font-size: small;
+	display: inline;
+	margin-left: 20px;
+	text-align: right;
+}
