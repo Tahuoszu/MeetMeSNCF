@@ -20,7 +20,7 @@ public interface IDAO<T> {
 	/**
 	 * MÃ©thode permettant de trouver un Ã©lÃ©ment dans la base de donnÃ©es avec
 	 * son identifiant.
-	 */
-	public T find(long id);
-
+	 */	
+	//Probleme car l'identifiant est différent suivant la classe implémentée
+	//public T find(String login);
 }

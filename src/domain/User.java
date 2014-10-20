@@ -1,34 +1,47 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+import com.googlecode.objectify.annotation.*;
+
+@Entity
+@Index
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = -678103706880391625L;
-	
-	private Long id;
-	private String login;
+	//L'Id sera généré par nous
+	@Id private String login;
 	private String password;
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String presentation;
 	private String sexe;
-	private List<String> interests;
+	private int age;
+	@Serialize private List<String> interests;
+	//private Key<Gare>
+	//private horaire
+	
+	
 	
 	public User() {
-	    this.interests = new ArrayList<String>();
+	    //this.interests = new ArrayList<String>();
 	}
 	
-	public long getId() {
-		return id;
+	public User(String pseudo,String mdp,String email,String nom,String prenom,String presentation,List<String> interests,int age, String sexe){
+		this.login = pseudo;
+		this.password = mdp;
+		this.email = email;
+		this.lastname = nom;
+		this.firstname = prenom;
+		this.presentation = presentation;
+		this.interests = interests;
+		this.age = age;
+		this.sexe = sexe;
 	}
 	
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	
 	public String getLogin() {
 		return login;
@@ -70,6 +83,13 @@ public class User implements Serializable {
 		this.email = email;
 	}
 	
+	public int getAge(){
+		return age;
+	}
+	
+	public void setAge(int age){
+		this.age = age;
+	}
 	public String getPresentation() {
 		return presentation;
 	}

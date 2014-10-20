@@ -1,5 +1,6 @@
 package dao;
 
+import domain.Message;
 import domain.RequestSNCF;
 import domain.User;
 
@@ -22,4 +23,7 @@ public class DAOFactory {
 		return new DAOSearch();
 	}
 	
+	public static IDAO<Message> createDAOMessage(){
+		return new DAOMessage();
+	}
 }

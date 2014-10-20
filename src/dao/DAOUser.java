@@ -1,16 +1,20 @@
 package dao;
 import domain.User;
+import com.googlecode.objectify.ObjectifyService;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
-
+@SuppressWarnings("serial")
 public class DAOUser implements IDAO<User> {
-
+	static {
+        ObjectifyService.register(User.class); // Fait connaître la classe-entité à Objectify
+    }
 	/**
 	 * MÃ©thode permettant d'ajouter un utilisateur Ã  la base de donnÃ©es.
 	 */
 	@Override
 	public void add(User object) {
 		// TODO Auto-generated method stub
-		
+		ofy().save().entity(object);
 	}
 
 	/**
@@ -18,7 +22,7 @@ public class DAOUser implements IDAO<User> {
 	 */
 	@Override
 	public void remove(User object) {
-		// TODO Auto-generated method stub
+		ofy().delete().type(User.class).id(object.getLogin()).now();
 		
 	}
 
@@ -28,32 +32,31 @@ public class DAOUser implements IDAO<User> {
 	@Override
 	public void update(User object) {
 		// TODO Auto-generated method stub
-		
+		ofy().save().entity(object);
 	}
 
 	/**
 	 * MÃ©thode permettant de trouver un utilisateur dans la base de donnÃ©es, 
 	 * avec son identifiant.
 	 */
-	@Override
-	public User find(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public User find(String login, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		User u = ofy().load().type(User.class).id(login).now();
+		if (u.getPassword() != password){
+			return null;
+		}
+		return u;
 	}
 	
 	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return ofy().load().type(User.class).filter("email ==", email).list().get(0);
 	}
 	
-	public User findByLogin(String login) {
+	public User find(String login) {
 		// TODO Auto-generated method stub
-		return null;
+		return ofy().load().type(User.class).id(login).now();
 	}
 	
 }
