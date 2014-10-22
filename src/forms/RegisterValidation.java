@@ -95,13 +95,12 @@ public class RegisterValidation {
      * @return true si le login est disponible et false sinon.
      */
     public boolean isLoginAvailable(String login) {
-        /*
+        
         if(daoUser instanceof DAOUser)
-            if(((DAOUser)daoUser).findByLogin(login) != null) 
-                return true;
-        return false;
-        */
+            if(((DAOUser)daoUser).find(login) != null) 
+                return false;
         return true;
+        
     }
         
     /**
@@ -110,13 +109,12 @@ public class RegisterValidation {
      * @return true si l'email est disponible et false sinon.
      */
     public boolean isEmailAvailable(String email) {
-        /*
+        
         if(daoUser instanceof DAOUser)
             if(((DAOUser)daoUser).findByEmail(email) != null) 
-                return true;
-        return false;
-        */
+                return false;
         return true;
+        
     }
     
 }

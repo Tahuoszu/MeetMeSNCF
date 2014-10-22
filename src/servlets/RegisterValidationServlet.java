@@ -45,7 +45,7 @@ public class RegisterValidationServlet extends HttpServlet {
 		// Si le champ dont on veut verifier la disponibilite est l'email
 		else if(type.equals("email")) {
 		  String email = req.getParameter("email");
-		  isAvailable = rv.isLoginAvailable(email);
+		  isAvailable = rv.isEmailAvailable(email);
 		}
 	
 		resp.setContentType("application/json");
