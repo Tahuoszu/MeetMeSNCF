@@ -2,6 +2,7 @@ package forms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 import utils.Security;
 import dao.IDAO;
@@ -127,9 +128,17 @@ public class RegisterForm {
 	/**
 	 * Permet de valider le formulaire d'inscription.
 	 */
-	public boolean validate() {
+	public Map<String,String> validate() {
 		RegisterValidation rv = new RegisterValidation(daoUser);
-		return rv.isLoginAvailable(login) && rv.isEmailAvailable(email);
+	    
+	    rv.loginValidation(login);
+	    rv.passwordValidation(password);
+	    rv.confirmationValidation(password, confirmation);
+		rv.emailValidation(email);
+		rv.presentationValidation(presentation);
+		rv.sexeValidation(sexe);
+
+		return rv.getErrors();
 	}
 
 }

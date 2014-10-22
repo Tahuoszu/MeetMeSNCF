@@ -4,8 +4,15 @@ body {
 }
 
 .help-block {
-	font-size:small;
+	font-size: small;
+	margin-bottom: 0;
 }
+
+/* Si on veut que les etoiles deviennent rouge lors dune erreur
+.has-error .requis {
+  color: #a94442;
+}
+*/
 
 .well {
 	background-color: #fbfbfb;

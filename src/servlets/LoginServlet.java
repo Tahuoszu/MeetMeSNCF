@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("login", login);
 			page = WELCOME_JSP;
 		}
-		// Si le couple login - password n'est pas valide
+		// Si le couple login - password n'est pas valide : on reaffiche la page avec les erreurs
 		else {
 			req.setAttribute("oldLogin", login);
 			req.setAttribute("errorLogin", true);

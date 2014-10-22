@@ -30,26 +30,32 @@
         <c:set var="classColG" value="col-md-4" />
         <c:set var="classColD" value="col-md-8" />
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['login']}"> has-error</c:if>">
           <label class="${classColG} control-label">Pseudo <span
             class="requis">*</span></label>
           <div class="${classColD}">
             <input type="text" name="login" class="form-control"
               value="<c:out value="${registerForm.login}"/>" />
+            <c:if test="${not empty errorsRegister['login']}">
+              <span class="help-block"><c:out value="${errorsRegister['login']}"/></span>
+            </c:if>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['password']}"> has-error</c:if>">
           <label class="${classColG} control-label">Mot de passe
             <span class="requis">*</span>
           </label>
           <div class="${classColD}">
             <input type="password" name="password" class="form-control"
               value="<c:out value="${registerForm.password}"/>" />
+            <c:if test="${not empty errorsRegister['password']}">
+              <span class="help-block"><c:out value="${errorsRegister['password']}"/></span>
+            </c:if>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['confirmation']}"> has-error</c:if>">
           <label class="${classColG} control-label">Confirmation
             <span class="requis">*</span>
           </label>
@@ -57,35 +63,47 @@
             <input type="password" name="confirmation"
               class="form-control"
               value="<c:out value="${registerForm.confirmation}"/>" />
+            <c:if test="${not empty errorsRegister['confirmation']}">
+              <span class="help-block"><c:out value="${errorsRegister['confirmation']}"/></span>
+            </c:if>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['email']}"> has-error</c:if>">
           <label class="${classColG} control-label">E-mail <span
             class="requis">*</span></label>
           <div class="${classColD}">
             <input type="text" name="email" class="form-control"
               value="<c:out value="${registerForm.email}"/>" />
+            <c:if test="${not empty errorsRegister['email']}">
+              <span class="help-block"><c:out value="${errorsRegister['email']}"/></span>
+            </c:if>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['firstname']}"> has-error</c:if>">
           <label class="${classColG} control-label">Prénom</label>
           <div class="${classColD}">
             <input type="text" name="firstname" class="form-control"
               value="<c:out value="${registerForm.firstname}"/>" />
+            <c:if test="${not empty errorsRegister['firstname']}">
+              <span class="help-block"><c:out value="${errorsRegister['firstname']}"/></span>
+            </c:if>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['lastname']}"> has-error</c:if>">
           <label class="${classColG} control-label">Nom</label>
           <div class="${classColD}">
             <input type="text" name="lastname" class="form-control"
               value="<c:out value="${registerForm.lastname}"/>" />
+            <c:if test="${not empty errorsRegister['lastname']}">
+              <span class="help-block"><c:out value="${errorsRegister['lastname']}"/></span>
+            </c:if>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['sexe']}"> has-error</c:if>">
           <label class="${classColG} control-label">Sexe <span
             class="requis">*</span></label>
           <div class="${classColD} selectContainer">
@@ -94,6 +112,9 @@
               <option value="male">Masculin</option>
               <option value="female">Féminin</option>
             </select>
+            <c:if test="${not empty errorsRegister['sexe']}">
+              <span class="help-block"><c:out value="${errorsRegister['sexe']}"/></span>
+            </c:if>
           </div>
         </div>
 
@@ -129,13 +150,16 @@
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row<c:if test="${not empty errorsRegister['presentation']}"> has-error</c:if>">
           <label class="${classColG} control-label">Présentation
             <span class="requis">*</span>
           </label>
           <div class="${classColD}">
             <textarea name="presentation" class="form-control"><c:out
                 value="${registerForm.presentation}" /></textarea>
+            <c:if test="${not empty errorsRegister['presentation']}">
+              <span class="help-block"><c:out value="${errorsRegister['presentation']}"/></span>
+            </c:if>
           </div>
         </div>
 

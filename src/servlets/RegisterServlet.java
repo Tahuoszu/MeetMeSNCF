@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -51,14 +52,17 @@ public class RegisterServlet extends HttpServlet {
 		req.setAttribute("registerForm", registerForm);
 		
 		// S'il n'y a pas eu d'erreurs lors de la validation du formulaire :
-		if(registerForm.validate()) {
+		Map<String,String> errors = registerForm.validate();
+		if(errors.isEmpty()) {
 			User user = registerForm.createUser();
 			daoUser.add(user);
 			EmailSender.sendConfirmationEmail(user.getEmail());
 		}
 		// Sinon, re-affichage du formulaire d'inscription :
-		else
+		else {
+		    req.setAttribute("errorsRegister", errors);
 			getServletContext().getRequestDispatcher(REGISTER_JSP).forward(req,resp);
+		}
 	}
 	
 }
