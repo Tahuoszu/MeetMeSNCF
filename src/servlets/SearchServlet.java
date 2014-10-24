@@ -65,12 +65,12 @@ public class SearchServlet extends HttpServlet {
 			// Requête contenant au moins le nom d'une gare
 			String depart   = request.getParameter("depart");
 			String arrivee  = request.getParameter("arrivee");
-			RequestSNCF req = daoSearch.findTrain(depart, arrivee);
-			request.setAttribute("requestSNCF", req);
-			
-			List<RequestSNCF> trains = new ArrayList<RequestSNCF>();
-			trains.add(req);
-			
+			// Recherche des trains                                                                                                                                                                                                                                                                                                                                                                                                                                   
+			List<RequestSNCF> trains = daoSearch.findTrain(depart, arrivee);
+			request.setAttribute("requestSNCF", trains);
+			for (RequestSNCF req : trains) {
+				daoSearch.update(req);
+			}
 		    String json = new Gson().toJson(trains);
 		    
 			// Requête contenant le nom d'un utilisateur

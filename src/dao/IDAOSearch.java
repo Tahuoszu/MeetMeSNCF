@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 public interface IDAOSearch<S, T> {
 
 	/**
@@ -23,7 +25,7 @@ public interface IDAOSearch<S, T> {
 	 * @param string
 	 * @return object
 	 */
-	public T findTrain(String str);
+	public List<T> findTrain(String str);
 	
 	/**
 	 * Cherche une entité dans la base de données DataStore.
@@ -31,7 +33,7 @@ public interface IDAOSearch<S, T> {
 	 * @param string
 	 * @return object
 	 */
-	public T findTrain(String str1, String str2);
+	public List<T> findTrain(String str1, String str2);
 	
 	/**
 	 * Supprime une entité de la base de données DataStore.

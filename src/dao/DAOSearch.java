@@ -1,17 +1,27 @@
 package dao;
 
+import java.util.List;
+
+import com.googlecode.objectify.ObjectifyService;
+
+import static com.googlecode.objectify.ObjectifyService.ofy;
 import domain.RequestSNCF;
 import domain.User;
 
 public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 
+	static {
+		 ObjectifyService.register(User.class);
+		 ObjectifyService.register(RequestSNCF.class);
+    }
+	
 	/**
 	 * Ajoute une entité RequestSNCF dans la base de données DataStore.
 	 * 
 	 * @param entity
 	 */
 	public void add(RequestSNCF req) {
-		
+		ofy().save().entity(req);
 	}
 
 	/**
@@ -22,8 +32,9 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * @param string
 	 * @return entity
 	 */
-	public User findMember(String pseudo) {
-		return null;
+	public User findMember(String login) {
+		User u = ofy().load().type(User.class).id(login).now();
+		return u;
 	}
 
 	/**
@@ -35,8 +46,9 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * @param string
 	 * @return entity
 	 */
-	public RequestSNCF findTrain(String depart) {
-		return null;
+	public List<RequestSNCF> findTrain(String depart) {
+		return ofy().load().type(RequestSNCF.class).
+				filter("name ==", depart).list();
 	}
 	
 	/**
@@ -49,10 +61,12 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * @param string
 	 * @return entity
 	 */
-	public RequestSNCF findTrain(String depart, String arrivee) {
+	public List<RequestSNCF> findTrain(String depart, String arrivee) {
 		if (arrivee.isEmpty())
 			return findTrain(depart);
-		return null;
+		List<RequestSNCF> trains = ofy().load().type(RequestSNCF.class).
+				filter("name ==", depart).list();
+		return trains;
 	}
 	
 	/**
@@ -61,7 +75,7 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * @param entity
 	 */
 	public void remove(RequestSNCF req) {
-		
+		ofy().delete().type(User.class).id(req.getNum()).now();
 	}
 	
 	/**

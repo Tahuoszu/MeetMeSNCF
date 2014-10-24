@@ -16,9 +16,9 @@
     <script type="text/javascript" src="../js/javascript.js"></script>  
   </head>
   <body>
-  
+  	<h1><p class="text-center">Bienvenu sur MeetMeSNCF !</p></h1>
   	<div class="container">
-      <form class="form-horizontal well col-md-offset-4 col-md-5"
+      <form class="form-horizontal well col-md-offset-4 col-md-4"
       method="post" action="/search" id="searchForm">
 		<fieldset>
 			<!-- Form Name -->

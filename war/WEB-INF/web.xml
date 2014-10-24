@@ -39,4 +39,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-name>registerValidation</servlet-name>
     <url-pattern>/registerValidation</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>search</servlet-name>
+    <servlet-class>servlets.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>search</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
 </web-app>

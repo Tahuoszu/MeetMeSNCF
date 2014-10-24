@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8431430892643244256L;
 	private static final String LOGIN_JSP = "/jsp/login.jsp";
-	private static final String WELCOME_JSP = "/jsp/welcome.jsp";
+	private static final String SEARCH_JSP = "/jsp/search.jsp";
 	
 	private IDAO<User> daoUser;
 	
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 		if(lv.isValid(login, password)) {
 			HttpSession session = req.getSession();
 			session.setAttribute("login", login);
-			page = WELCOME_JSP;
+			page = SEARCH_JSP;
 		}
 		// Si le couple login - password n'est pas valide : on reaffiche la page avec les erreurs
 		else {

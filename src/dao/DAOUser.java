@@ -3,10 +3,9 @@ import domain.User;
 import com.googlecode.objectify.ObjectifyService;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-@SuppressWarnings("serial")
 public class DAOUser implements IDAO<User> {
 	static {
-        ObjectifyService.register(User.class); // Fait connaître la classe-entité à Objectify
+        ObjectifyService.register(User.class); // Fait connaï¿½tre la classe-entitï¿½ ï¿½ Objectify
     }
 	/**
 	 * MÃ©thode permettant d'ajouter un utilisateur Ã  la base de donnÃ©es.
