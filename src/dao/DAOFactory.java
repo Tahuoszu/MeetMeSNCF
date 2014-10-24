@@ -1,7 +1,7 @@
 package dao;
 
 import domain.Message;
-import domain.RequestSNCF;
+import domain.Train;
 import domain.User;
 
 public class DAOFactory {
@@ -19,7 +19,7 @@ public class DAOFactory {
 	 * 
 	 * @return DAOSearch
 	 */
-	public static IDAOSearch<User, RequestSNCF> createDAOSearch() {
+	public static IDAOSearch<User, Train> createDAOSearch() {
 		return new DAOSearch();
 	}
 	

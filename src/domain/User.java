@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.*;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = -678103706880391625L;
-	//L'Id sera généré par nous
+	//L'Id sera gï¿½nï¿½rï¿½ par nous
 	@Id private String login;
 	private String password;
 	private String firstname;
@@ -20,7 +20,8 @@ public class User implements Serializable {
 	private String sexe;
 	private int age;
 	@Serialize private List<String> interests;
-	//private Key<Gare>
+	//private Key<User> listeamis;
+	//private Key<Train>
 	//private horaire
 	
 	

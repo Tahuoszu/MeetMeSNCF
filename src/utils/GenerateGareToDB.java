@@ -1,6 +1,6 @@
 package utils;
 
-import com.google.appengine.api.datastore.*;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.annotation.*;
+
+import static com.googlecode.objectify.ObjectifyService.ofy;
+import domain.Gare;
+
+
 public class GenerateGareToDB {
+    static {
+        ObjectifyService.register(Gare.class);
+    }
 	
 	// Chemin du fichier contenant la liste des gares
 	private final static String FILEPATH = "liste_gares.txt";
@@ -46,14 +58,11 @@ public class GenerateGareToDB {
 	}
 	
 	private static void addGareToDB(Map<String, String> liste) {
-		DatastoreService datastore;
-		datastore = DatastoreServiceFactory.getDatastoreService();
+		Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
 		for (Entry<String, String> g : liste.entrySet()) {
-			Entity gare = new Entity("Gare",
-					KeyFactory.createKey("ListeGares", "ListeGares"));
-			gare.setProperty("UIC", g.getValue());
-			gare.setProperty("name", g.getKey());
-			datastore.put(gare);
+			Gare gare = new Gare( g.getValue(),g.getKey(), cle);			
+			ofy().save().entity(gare);
 		}
+	    
 	}
 }

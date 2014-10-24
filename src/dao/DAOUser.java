@@ -1,6 +1,10 @@
 package dao;
+import java.util.List;
+
 import domain.User;
+
 import com.googlecode.objectify.ObjectifyService;
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 public class DAOUser implements IDAO<User> {
@@ -43,14 +47,21 @@ public class DAOUser implements IDAO<User> {
 	public User find(String login, String password) {
 		// TODO Auto-generated method stub
 		User u = ofy().load().type(User.class).id(login).now();
-		if (u.getPassword() != password){
+		if (u == null)
+			return null;
+		if (u.getPassword() != password) {
 			return null;
 		}
 		return u;
 	}
 	
 	public User findByEmail(String email) {
-		return ofy().load().type(User.class).filter("email ==", email).list().get(0);
+		List<User> lu = ofy().load().type(User.class).filter("email ==", email).list();
+		if(lu == null)
+			return null;
+		if(lu.isEmpty())
+			return null;
+		return lu.get(0);
 	}
 	
 	public User find(String login) {

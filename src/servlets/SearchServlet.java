@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import dao.DAOFactory;
 import dao.IDAOSearch;
-import domain.RequestSNCF;
+import domain.Train;
 import domain.User;
 import utils.GenerateGareToDB;
 
@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String SEARCH_JSP = "/jsp/search.jsp";
 	
-	private IDAOSearch<User, RequestSNCF> daoSearch;
+	private IDAOSearch<User, Train> daoSearch;
        
     /**
      * Crée la Servlet SearchServlet
@@ -66,9 +66,9 @@ public class SearchServlet extends HttpServlet {
 			String depart   = request.getParameter("depart");
 			String arrivee  = request.getParameter("arrivee");
 			// Recherche des trains                                                                                                                                                                                                                                                                                                                                                                                                                                   
-			List<RequestSNCF> trains = daoSearch.findTrain(depart, arrivee);
+			List<Train> trains = daoSearch.findTrain(depart, arrivee);
 			request.setAttribute("requestSNCF", trains);
-			for (RequestSNCF req : trains) {
+			for (Train req : trains) {
 				daoSearch.update(req);
 			}
 		    String json = new Gson().toJson(trains);

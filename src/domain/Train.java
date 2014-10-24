@@ -2,14 +2,14 @@ package domain;
 
 import java.io.Serializable;
 
-public class RequestSNCF implements Serializable {
+public class Train implements Serializable {
 
 	private static final long serialVersionUID = 7754525956851059700L;
 
 	// Date de passage du train dans la gare
-	private final String name;
+	private final String date;
 	
-	// Numéro de train
+	// Numéro de train (UIC)
 	private final String num;
 	
 	// Code mission du train
@@ -21,10 +21,12 @@ public class RequestSNCF implements Serializable {
 	// Etat remarquable du train
 	private final String etat;
 	
-	public RequestSNCF(String name, String num, String miss, String term,
+	//Arrivée
+	
+	public Train(String date, String num, String miss, String term,
 			String etat) {
 		super();
-		this.name = name;
+		this.date = date;
 		this.num  = num;
 		this.miss = miss;
 		this.term = term;
@@ -34,10 +36,10 @@ public class RequestSNCF implements Serializable {
 	/**
 	 * Retourne le nom de la gare
 	 * 
-	 * @return name
+	 * @return date
 	 */
-	public String getName() {
-		return name;
+	public String getDate() {
+		return date;
 	}
 
 	/**

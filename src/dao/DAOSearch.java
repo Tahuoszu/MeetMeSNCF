@@ -5,14 +5,16 @@ import java.util.List;
 import com.googlecode.objectify.ObjectifyService;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
-import domain.RequestSNCF;
+import domain.Gare;
+import domain.Train;
 import domain.User;
 
-public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
+public class DAOSearch implements IDAOSearch<User, Train> {
 
 	static {
+		ObjectifyService.register(Gare.class);
 		 ObjectifyService.register(User.class);
-		 ObjectifyService.register(RequestSNCF.class);
+		 ObjectifyService.register(Train.class);
     }
 	
 	/**
@@ -20,7 +22,7 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * 
 	 * @param entity
 	 */
-	public void add(RequestSNCF req) {
+	public void add(Train req) {
 		ofy().save().entity(req);
 	}
 
@@ -46,8 +48,8 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * @param string
 	 * @return entity
 	 */
-	public List<RequestSNCF> findTrain(String depart) {
-		return ofy().load().type(RequestSNCF.class).
+	public List<Train> findTrain(String depart) {
+		return ofy().load().type(Train.class).
 				filter("name ==", depart).list();
 	}
 	
@@ -61,11 +63,14 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * @param string
 	 * @return entity
 	 */
-	public List<RequestSNCF> findTrain(String depart, String arrivee) {
+	public List<Train> findTrain(String depart, String arrivee) {
 		if (arrivee.isEmpty())
 			return findTrain(depart);
-		List<RequestSNCF> trains = ofy().load().type(RequestSNCF.class).
-				filter("name ==", depart).list();
+		String num = ofy().load().type(Gare.class).
+				filter("name ==", depart).list().get(0).getUIC();
+		//String num = ofy().load().type(Gare.class).filter("name ==", depart).list().get(0).getUIC();
+		List<Train> trains = ofy().load().type(Train.class).
+				filter("num ==", num).list();
 		return trains;
 	}
 	
@@ -74,7 +79,7 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * 
 	 * @param entity
 	 */
-	public void remove(RequestSNCF req) {
+	public void remove(Train req) {
 		ofy().delete().type(User.class).id(req.getNum()).now();
 	}
 	
@@ -83,7 +88,7 @@ public class DAOSearch implements IDAOSearch<User, RequestSNCF> {
 	 * 
 	 * @param object
 	 */
-	public void update(RequestSNCF req) {
+	public void update(Train req) {
 		add(req);
 	}
 	
