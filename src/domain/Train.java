@@ -7,21 +7,23 @@ public class Train implements Serializable {
 	private static final long serialVersionUID = 7754525956851059700L;
 
 	// Date de passage du train dans la gare
-	private final String date;
+	private String date;
 	
 	// Numéro de train (UIC)
-	private final String num;
+	private String num;
 	
 	// Code mission du train
-	private final String miss;
+	private String miss;
 	
 	// Terminus du train
-	private final String term;
+	private String term;
 	
 	// Etat remarquable du train
-	private final String etat;
+	private String etat;
 	
 	//Arrivée
+	
+	public Train() {}
 	
 	public Train(String date, String num, String miss, String term,
 			String etat) {
@@ -77,5 +79,26 @@ public class Train implements Serializable {
 	public String getEtat() {
 		return etat;
 	}
+
+	
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
+
+    public void setMiss(String miss) {
+        this.miss = miss;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
 	
 }
