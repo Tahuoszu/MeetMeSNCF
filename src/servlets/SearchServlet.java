@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 
 import dao.DAOFactory;
 import dao.IDAOSearch;
+import domain.Requete;
 import domain.Train;
 import domain.User;
 import utils.GenerateGareToDB;
@@ -37,6 +38,7 @@ public class SearchServlet extends HttpServlet {
      */
 	public void init() throws ServletException {
 		super.init();
+		
 		daoSearch = DAOFactory.createDAOSearch();
 		try {
 			GenerateGareToDB.init();

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import utils.EmailSender;
 import dao.DAOFactory;
 import dao.IDAO;
+import domain.Requete;
 import domain.User;
 import forms.RegisterForm;
 
@@ -50,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
 		registerForm.setInterests(req.getParameterValues("interests"));
 		
 		req.setAttribute("registerForm", registerForm);
-		
+
 		// S'il n'y a pas eu d'erreurs lors de la validation du formulaire :
 		Map<String,String> errors = registerForm.validate();
 		if(errors.isEmpty()) {
