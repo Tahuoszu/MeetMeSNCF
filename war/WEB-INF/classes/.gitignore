@@ -1,10 +1,7 @@
 /META-INF/
 /dao/
 /domain/
-<<<<<<< Updated upstream
-=======
 /forms/
 /log4j.properties
 /servlets/
 /utils/
->>>>>>> Stashed changes

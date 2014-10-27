@@ -13,6 +13,12 @@ public class DAOMessage implements IDAO<Message>{
 	}
 
 	@Override
+	public Message find(String str) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public void remove(Message object) {
 		// TODO Auto-generated method stub
 		
@@ -23,7 +29,5 @@ public class DAOMessage implements IDAO<Message>{
 		// TODO Auto-generated method stub
 		ofy().save().entity(object);
 	}
-
-	
 
 }

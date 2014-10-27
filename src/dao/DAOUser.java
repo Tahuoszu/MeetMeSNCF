@@ -42,8 +42,6 @@ public class DAOUser implements IDAO<User> {
 	 * Méthode permettant de trouver un utilisateur dans la base de données, 
 	 * avec son identifiant.
 	 */
-
-
 	public User find(String login, String password) {
 		// TODO Auto-generated method stub
 		User u = ofy().load().type(User.class).id(login).now();

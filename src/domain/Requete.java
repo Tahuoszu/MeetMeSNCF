@@ -12,6 +12,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class Requete {
+	
 	private String depart;
 	private String arrivee;
 	
@@ -23,36 +24,30 @@ public class Requete {
 	
 	public String requeteSNCF(){
 		String xml = "";
-		if (arrivee == ""){
+		if (arrivee.isEmpty()){
 			xml = lancerRequete(depart);
 		}else{
 			xml = lancerRequete(depart, arrivee);
 		}
-		
 		return xml;
-		
 	}
-
-
-	
 	
 	private String lancerRequete(String depart) {
-		// TODO Auto-generated method stub
 		 ClientConfig config = new DefaultClientConfig();
 		 Client client = Client.create(config);
 		 client.addFilter(new HTTPBasicAuthFilter("upmc115", "Ej2fSb74"));
 		 WebResource service = client.resource(getBaseURI());
-		 return service.path("gare").path(depart).path("depart").accept(MediaType.APPLICATION_XML).get(String.class);
+		 return service.path("gare").path(depart).path("depart").
+				 accept(MediaType.APPLICATION_XML).get(String.class);
 	}
 	
 	private String lancerRequete(String depart, String arrivee) {
-		// TODO Auto-generated method stub
 		 ClientConfig config = new DefaultClientConfig();
 		 Client client = Client.create(config);
 		 client.addFilter(new HTTPBasicAuthFilter("upmc115", "Ej2fSb74"));
 		 WebResource service = client.resource(getBaseURI());
-		 return service.path("gare").path(depart).path("depart").path(arrivee).accept(MediaType.APPLICATION_XML).get(String.class);
-
+		 return service.path("gare").path(depart).path("depart").
+				 path(arrivee).accept(MediaType.APPLICATION_XML).get(String.class);
 	}
 	
 	private static URI getBaseURI() {

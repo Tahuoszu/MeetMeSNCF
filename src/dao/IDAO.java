@@ -1,26 +1,46 @@
 package dao;
 
+import java.util.List;
+
 public interface IDAO<T> {
-	
+
 	/**
-	 * Méthode permettant d'ajouter un élément à la base de données.
+	 * Ajoute une entité dans la base de données DataStore.
+	 * 
+	 * @param object
 	 */
 	public void add(T object);
 	
 	/**
-	 * Méthode permettant de supprimer un élément de la base de données.
+	 * Cherche une entité dans la base de données DataStore.
+	 * 
+	 * @param string
+	 * @return object
+	 */
+	public T find(String str);
+	
+	/**
+	 * Cherche une liste d'entité dans la base de données DataStore.
+	 * 
+	 * @param string
+	 * @param string
+	 * @return list of objects
+	 */
+	//public List<T> find(String str1, String str2);
+	
+	
+	/**
+	 * Supprime une entité de la base de données DataStore.
+	 * 
+	 * @param object
 	 */
 	public void remove(T object);
 	
 	/**
-	 * Méthode permettant de mettre à jour un élément dans la base de données.
+	 * Met à jour une entité dans la base de données DataStore.
+	 * 
+	 * @param object
 	 */
 	public void update(T object);
-
-	/**
-	 * Méthode permettant de trouver un élément dans la base de données avec
-	 * son identifiant.
-	 */	
-	//Probleme car l'identifiant est diff�rent suivant la classe impl�ment�e
-	//public T find(String login);
+	
 }

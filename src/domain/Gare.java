@@ -1,11 +1,6 @@
 package domain;
 
-
-
 import java.io.Serializable;
-
-
-
 
 import com.google.appengine.api.datastore.Key;
 import com.googlecode.objectify.annotation.*;
@@ -49,8 +44,5 @@ public class Gare implements Serializable {
 	public String getName() {
 		return name;
 	}
-
-	
-
 
 }

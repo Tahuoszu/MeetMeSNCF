@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import dao.DAOFactory;
-import dao.IDAOSearch;
+import dao.IDAO;
 import domain.Requete;
 import domain.Train;
 import domain.User;
@@ -24,7 +24,8 @@ public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String SEARCH_JSP = "/jsp/search.jsp";
 	
-	private IDAOSearch<User, Train> daoSearch;
+	private IDAO<Train> daoTrain;
+	private IDAO<User> daoUser;
        
     /**
      * Crée la Servlet SearchServlet
@@ -38,13 +39,13 @@ public class SearchServlet extends HttpServlet {
      */
 	public void init() throws ServletException {
 		super.init();
-		
-		daoSearch = DAOFactory.createDAOSearch();
-		try {
+		daoTrain = DAOFactory.createDAOTrain();
+		daoUser  = DAOFactory.createDAOUser();
+		/*try {
 			GenerateGareToDB.init();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**
@@ -58,34 +59,42 @@ public class SearchServlet extends HttpServlet {
 	/**
 	 * Traite les requêtes de type POST
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
+		
 		if (session.getAttribute("login") != "login")
 			session.removeAttribute("login");
+		
 		else {
 			
-			// Requête contenant au moins le nom d'une gare
-			String depart   = request.getParameter("depart");
-			String arrivee  = request.getParameter("arrivee");
-			// Recherche des trains                                                                                                                                                                                                                                                                                                                                                                                                                                   
-			List<Train> trains = daoSearch.findTrain(depart, arrivee);
-			request.setAttribute("requestSNCF", trains);
-			for (Train req : trains) {
-				daoSearch.update(req);
-			}
-		    String json = new Gson().toJson(trains);
-		    
-			// Requête contenant le nom d'un utilisateur
-			String user = request.getParameter("user");
-			User member = daoSearch.findMember(user);
-
-			List<User> users = new ArrayList<User>();
-			users.add(member);
+			String depart  = request.getParameter("depart");
+			String arrivee = request.getParameter("arrivee");
+			String user    = request.getParameter("user");
+			String json;
 			
-			json = new Gson().toJson(users);
+			// Recherche des trains 
+			if (user.isEmpty()) {                                                                                                                                                                                                                                                                                                                                                                                                                                  
+				List<Train> trains = daoTrain.findTrain(depart, arrivee);
+				request.setAttribute("train", trains);
+				for (Train req : trains) {
+					daoTrain.update(req);
+				}
+			    json = new Gson().toJson(trains);
+			
+			 // Recherche des utilisateurs
+			} else {
+				User member = daoUser.find(user);
+				List<User> users = new ArrayList<User>();
+				users.add(member);
+				json = new Gson().toJson(users);
+			}
 
+			// Recharge la page avec les résultats
 			request.getRequestDispatcher(SEARCH_JSP).forward(request, response);
 			
+			// Envoi de la requête
 			response.setContentType("application/json");
 		    response.setCharacterEncoding("ISO-8859-15");
 		    response.getWriter().write(json);
