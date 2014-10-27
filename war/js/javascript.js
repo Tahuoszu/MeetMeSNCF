@@ -1,3 +1,4 @@
+// Validation cote client du formulaire dinscription
 $(document).ready(function() {
     $('#registerForm').bootstrapValidator({
         fields: {
@@ -115,3 +116,11 @@ $(document).ready(function() {
          data.bv.disableSubmitButtons(false);
     });
 });
+
+// Autocompletion pour la recherche de gares
+var options, a;
+jQuery(function(){
+    options = { serviceUrl:'/gareSuggestions' };
+    a = $('#depart').autocomplete(options);
+});
+

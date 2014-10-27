@@ -47,4 +47,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-name>search</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>gareSuggestions</servlet-name>
+    <servlet-class>servlets.GareSuggestionsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>gareSuggestions</servlet-name>
+    <url-pattern>/gareSuggestions</url-pattern>
+  </servlet-mapping>
 </web-app>

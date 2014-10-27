@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.autocomplete.min.js"></script>
     <script type="text/javascript" src="../js/javascript.js"></script>  
   </head>
   <body>
@@ -27,10 +28,13 @@
 			<div class="control-group">
 			  <label class="control-label" for="depart">Départ :</label>
 			  <div class="controls">
+                <input type="text" name="depart" id="depart" class="input-large" />
+        <!--  
 			    <select id="depart" name="depart" class="input-large">
 			      <option>Gare1</option>
 			      <option>Gare2</option>
 			    </select>
+          -->
 			  </div>
 			</div>
 			
