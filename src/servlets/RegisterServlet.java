@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import utils.EmailSender;
+import utils.ImportStation;
 import dao.DAOFactory;
 import dao.IDAO;
 import domain.User;
@@ -56,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
 		if(errors.isEmpty()) {
 			User user = registerForm.createUser();
 			daoUser.add(user);
+			ImportStation.init();
 			EmailSender.sendConfirmationEmail(user.getEmail());
 		}
 		// Sinon, re-affichage du formulaire d'inscription :

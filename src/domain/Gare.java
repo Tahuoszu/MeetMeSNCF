@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.Key;
 import com.googlecode.objectify.annotation.*;
 
 @Entity
+@Index
 public class Gare implements Serializable {
 
 	private static final long serialVersionUID = -6809445579040707116L;
@@ -16,7 +17,7 @@ public class Gare implements Serializable {
 	@Id private final String UIC;
 	
 	// Nom de la gare
-	@Index private final String name;
+	private final String name;
 	
 	// Numéro et type des lignes passant par la gare
 	private final Map<String, String> lines;
