@@ -7,7 +7,7 @@ import domain.User;
 import com.googlecode.objectify.ObjectifyService;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-public class DAOUser implements IDAO<User> {
+public class DAOUser implements IDAOUser {
 	
 	static {
         ObjectifyService.register(User.class);
@@ -29,15 +29,6 @@ public class DAOUser implements IDAO<User> {
 		return ofy().load().type(User.class).id(login).now();
 	}
 	
-
-	/**
-	 * Méthode permettant de trouver une liste d'utilisateur commençant par la
-	 * query de son identifiant dans la base de données.
-	 */
-	public List<User> findUser(String login) {
-		return ofy().load().type(User.class).filter("login ==", login).list();
-	}
-	
 	/**
 	 * Méthode permettant de trouver un utilisateur dans la base de données, 
 	 * avec son identifiant et son mot de passe.
@@ -50,6 +41,14 @@ public class DAOUser implements IDAO<User> {
 			return null;
 		}
 		return u;
+	}
+
+	/**
+	 * Méthode permettant de trouver une liste d'utilisateur commençant par la
+	 * query de son identifiant dans la base de données.
+	 */
+	public List<User> findUser(String login) {
+		return ofy().load().type(User.class).filter("login ==", login).list();
 	}
 	
 	public User findByEmail(String email) {

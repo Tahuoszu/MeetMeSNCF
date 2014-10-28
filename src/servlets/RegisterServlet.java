@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import utils.EmailSender;
 import dao.DAOFactory;
 import dao.IDAO;
-import domain.Requete;
 import domain.User;
 import forms.RegisterForm;
 

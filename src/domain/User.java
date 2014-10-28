@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.*;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = -678103706880391625L;
-	//L'Id sera g�n�r� par nous
+	// L'ID sera généré par nous.
 	@Id private String login;
 	private String password;
 	private String firstname;

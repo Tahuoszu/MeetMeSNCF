@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/guava-18.0.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/objectify-5.1.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jersey-bundle-1.18.jar"/>
+	<classpathentry kind="lib" path="C:/Users/2900103/Documents/workspace/MeetMeSNCF/war/WEB-INF/lib/opencsv-2.3.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

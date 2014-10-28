@@ -8,7 +8,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import domain.Gare;
 import domain.Train;
 
-public class DAOTrain implements IDAO<Train> {
+public class DAOTrain implements IDAOTrain {
 
 	static {
 		ObjectifyService.register(Gare.class);

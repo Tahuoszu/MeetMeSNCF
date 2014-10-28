@@ -21,8 +21,6 @@ public class Train implements Serializable {
 	// Etat remarquable du train
 	private String etat;
 	
-	//Arrivée
-	
 	public Train() {}
 	
 	public Train(String date, String num, String miss, String term,
@@ -79,26 +77,25 @@ public class Train implements Serializable {
 	public String getEtat() {
 		return etat;
 	}
-
 	
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+    
+    public void setMiss(String miss) {
+        this.miss = miss;
     }
 
     public void setNum(String num) {
         this.num = num;
     }
 
-    public void setMiss(String miss) {
-        this.miss = miss;
-    }
-
     public void setTerm(String term) {
         this.term = term;
-    }
-
-    public void setEtat(String etat) {
-        this.etat = etat;
     }
 	
 }

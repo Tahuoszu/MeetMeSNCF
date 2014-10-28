@@ -7,7 +7,7 @@ import com.googlecode.objectify.ObjectifyService;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import domain.Gare;
 
-public class DAOGare implements IDAO<Gare> {
+public class DAOGare implements IDAOGare {
 
 	static {
 		ObjectifyService.register(Gare.class);

@@ -3,7 +3,7 @@ package dao;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import domain.Message;
 
-public class DAOMessage implements IDAO<Message>{
+public class DAOMessage implements IDAOMessage {
 
 
 	@Override

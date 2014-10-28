@@ -1,27 +1,24 @@
 package utils;
 
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
+//import java.util.Map.Entry;
 
-import com.google.appengine.api.datastore.Key;
+/*import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.*;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
-import domain.Gare;
-
+import domain.Gare;*/
 
 public class GenerateGareToDB {
-    static {
+    /*static {
         ObjectifyService.register(Gare.class);
-    }
+    }*/
 	
 	// Chemin du fichier contenant la liste des gares
 	private final static String FILEPATH = "liste_gares.txt";
@@ -58,11 +55,11 @@ public class GenerateGareToDB {
 	}
 	
 	private static void addGareToDB(Map<String, String> liste) {
-		Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
+		/*Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
 		for (Entry<String, String> g : liste.entrySet()) {
-			Gare gare = new Gare( g.getValue(),g.getKey(), cle);			
+			Gare gare = new Gare(g.getValue(),g.getKey(), cle);			
 			ofy().save().entity(gare);
 		}
-	    
+	    */
 	}
 }

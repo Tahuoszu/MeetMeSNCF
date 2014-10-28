@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.List;
-
 public interface IDAO<T> {
 
 	/**
@@ -18,16 +16,6 @@ public interface IDAO<T> {
 	 * @return object
 	 */
 	public T find(String str);
-	
-	/**
-	 * Cherche une liste d'entité dans la base de données DataStore.
-	 * 
-	 * @param string
-	 * @param string
-	 * @return list of objects
-	 */
-	//public List<T> find(String str1, String str2);
-	
 	
 	/**
 	 * Supprime une entité de la base de données DataStore.

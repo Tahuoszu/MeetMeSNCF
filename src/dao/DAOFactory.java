@@ -1,9 +1,5 @@
 package dao;
 
-import domain.Message;
-import domain.Train;
-import domain.User;
-
 public class DAOFactory {
 
 	/**
@@ -11,7 +7,7 @@ public class DAOFactory {
 	 * 
 	 * @return une instance de DAOMessage
 	 */
-	public static IDAO<Message> createDAOMessage() {
+	public static IDAOMessage createDAOMessage() {
 		return new DAOMessage();
 	}
 	
@@ -20,7 +16,7 @@ public class DAOFactory {
 	 * 
 	 * @return une instance de DAOTrain
 	 */
-	public static IDAO<Train> createDAOTrain() {
+	public static IDAOTrain createDAOTrain() {
 		return new DAOTrain();
 	}
 
@@ -29,7 +25,7 @@ public class DAOFactory {
 	 * 
 	 * @return une instance de DAOUser
 	 */
-	public static IDAO<User> createDAOUser() {
+	public static IDAOUser createDAOUser() {
 		return new DAOUser();
 	}
 	
