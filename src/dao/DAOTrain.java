@@ -58,12 +58,15 @@ public class DAOTrain implements IDAO<Train> {
 	public List<Train> findTrain(String depart, String arrivee) {
 		if (arrivee.isEmpty())
 			return findTrain(depart);
+		// Chercher dans le DataStore
 		String num = ofy().load().type(Gare.class).
 				filter("name ==", depart).list().get(0).getUIC();
 		List<Train> trains = ofy().load().type(Train.class).
 				filter("num ==", num).list();
+		if (!trains.isEmpty())
+			return trains;
+		// Envoyer la requête par l'API SNCF
 		return trains;
-		// Chercher dans le DataStore puis envoyer la requête par l'API SNCF
 	}
 	
 	/**

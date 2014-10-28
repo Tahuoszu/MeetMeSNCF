@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import dao.DAOFactory;
+import dao.DAOTrain;
 import dao.IDAO;
 import domain.Requete;
 import domain.Train;
@@ -24,7 +25,8 @@ public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String SEARCH_JSP = "/jsp/search.jsp";
 	
-	private IDAO<Train> daoTrain;
+	//private IDAO<Train> daoTrain;
+	private DAOTrain daoTrain;
 	private IDAO<User> daoUser;
        
     /**
@@ -39,7 +41,7 @@ public class SearchServlet extends HttpServlet {
      */
 	public void init() throws ServletException {
 		super.init();
-		daoTrain = DAOFactory.createDAOTrain();
+		daoTrain = new DAOTrain();
 		daoUser  = DAOFactory.createDAOUser();
 		/*try {
 			GenerateGareToDB.init();
