@@ -2,10 +2,13 @@ package dao;
 
 import java.util.List;
 
+import utils.XmlTools;
+
 import com.googlecode.objectify.ObjectifyService;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import domain.Gare;
+import domain.Requete;
 import domain.Train;
 
 public class DAOTrain implements IDAOTrain {
@@ -53,6 +56,7 @@ public class DAOTrain implements IDAOTrain {
 	 * 
 	 * @param gare de départ
 	 * @param gare d'arrivée
+	 * @param index de roulement 
 	 * @return liste de trains
 	 */
 	public List<Train> findTrain(String depart, String arrivee) {
@@ -63,9 +67,13 @@ public class DAOTrain implements IDAOTrain {
 				filter("name ==", depart).list().get(0).getUIC();
 		List<Train> trains = ofy().load().type(Train.class).
 				filter("num ==", num).list();
-		if (!trains.isEmpty())
-			return trains;
-		// Envoyer la requête par l'API SNCF
+		//requete a la sncf
+		if (trains.isEmpty()){
+			trains = new XmlTools().XmlToTrains(new Requete(depart,arrivee).requeteSNCF());
+			for (int i = 0 ; i < trains.size() - 1; i++){
+				add(trains.get(i));
+			}
+		}
 		return trains;
 	}
 	
