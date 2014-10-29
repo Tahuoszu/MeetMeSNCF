@@ -19,7 +19,7 @@ public class DAOGare implements IDAOGare {
 	 * @param gare
 	 */
 	public void add(Gare gare) {
-		ofy().save().entity(gare);
+		ofy().save().entity(gare).now();
 	}
 
 	/**

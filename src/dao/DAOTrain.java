@@ -47,7 +47,14 @@ public class DAOTrain implements IDAOTrain {
 	 * @return liste de trains
 	 */
 	public List<Train> findTrain(String depart) {
-		return ofy().load().type(Train.class).filter("name ==", depart).list();
+		List<Train> trains= ofy().load().type(Train.class).filter("num ==", depart).list();
+		if (trains.isEmpty()){
+			trains =  XmlTools.XmlToTrains( new Requete(depart,"").requeteSNCF());
+			for (int i = 0 ; i < trains.size(); i++){
+				add(trains.get(i));
+			}
+		}
+		return trains; 
 	}
 	
 	/**
@@ -69,7 +76,7 @@ public class DAOTrain implements IDAOTrain {
 				filter("num ==", num).list();
 		//requete a la sncf
 		if (trains.isEmpty()){
-			trains = new XmlTools().XmlToTrains(new Requete(depart,arrivee).requeteSNCF());
+			trains =  XmlTools.XmlToTrains(new Requete(depart,arrivee).requeteSNCF());
 			for (int i = 0 ; i < trains.size() - 1; i++){
 				add(trains.get(i));
 			}

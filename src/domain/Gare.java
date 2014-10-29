@@ -17,10 +17,11 @@ public class Gare implements Serializable {
 	@Id private final String UIC;
 	
 	// Nom de la gare
-	private final String name;
+	 private final String namae;
+	 
 	
 	// Numéro et type des lignes passant par la gare
-	private final Map<String, String> lines;
+	//private final Map<String, String> lines;
 
 	//Clé listegares pour lier les entités Gare
 	@Parent Key listegares;
@@ -33,11 +34,11 @@ public class Gare implements Serializable {
 	 * @param name
 	 * @param lines
 	 */
-	public Gare(String uic, String name, Map<String, String> lines) {
+	public Gare(String uic, String name/*, Map<String, String> lines*/) {
 		super();
 		this.UIC   = uic;
-		this.name  = name;
-		this.lines = lines;
+		this.namae  = name;
+		//this.lines = lines;
 		this.listegares = null;
 	}
 	
@@ -52,11 +53,11 @@ public class Gare implements Serializable {
 	 * @param listegares
 	 */
 	public Gare(String uic, String name,
-			Map<String, String> lines, Key listegares) {
+			/*Map<String, String> lines,*/ Key listegares) {
 		super();
 		this.UIC   = uic;
-		this.name  = name;
-		this.lines = lines;
+		this.namae  = name;
+		//this.lines = lines;
 		this.listegares = listegares;
 	}
 	
@@ -65,17 +66,17 @@ public class Gare implements Serializable {
 	 * 
 	 * @return lines
 	 */
-	public Map<String, String> getLines() {
+	/*public Map<String, String> getLines() {
 		return lines;
 	}
-	
+	*/
 	/**
 	 * Retourne le nom de la gare
 	 * 
 	 * @return name
 	 */
 	public String getName() {
-		return name;
+		return namae;
 	}
 
 	/**
@@ -101,13 +102,13 @@ public class Gare implements Serializable {
 	 * 
 	 * @return description de la gare
 	 */
-	public String toString() {
+	/*public String toString() {
 		String str = "Gare [UIC=" + UIC + ", name=" + name + ", lines={";
 		for (Entry<String, String> l : lines.entrySet())
 			str += "(" + l.getKey() + "," + l.getValue() + "), ";
 		str = str.substring(0, str.length() - 2);
 		str += "}]";
 		return str;
-	}
+	}*/
 	
 }

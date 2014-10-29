@@ -58,7 +58,7 @@ public class ImportStation {
 			row = reader.readNext();
 			while ((row = reader.readNext()) != null) {
 				lines = reduceArray(row);
-				gares.add(new Gare(row[0], row[1], lines));
+				gares.add(new Gare(row[0], row[1]/*, lines*/));
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -113,6 +113,7 @@ public class ImportStation {
 		Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
 		for (Gare gare : gares) {
 			gare.setKey(cle);
+			daogare.remove(gare);
 			daogare.add(gare);
 		}
 	}
