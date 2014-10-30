@@ -25,4 +25,12 @@ public interface IDAOTrain extends IDAO<Train> {
 	 */
 	public List<Train> findTrain(String depart, String arrivee);
 	
+	/**
+	 * Cherche une liste de trains � partir de la date dans la base de données DataStore.
+	 * 
+	 * @param gare de départ
+	 * @param gare d'arrivée
+	 * @return liste de trains
+	 */
+	public List<Train> findTrainByDate();
 }

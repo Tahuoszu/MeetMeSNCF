@@ -14,6 +14,10 @@ public class Train implements Serializable {
 	// Date de passage du train dans la gare
 	@Id private String date;
 	
+	//Date de passage du train dans la gare au format date pour pouvoir indexer par la date
+	//private Date dateDate;
+	//mettre dans le phraseur : Date(int year, int month, int date, int hrs, int min) pour créer le type date
+	
 	// NumÃ©ro de train (UIC)
 	private String num;
 	

@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 
 import utils.XmlTools;
@@ -61,6 +62,21 @@ public class DAOTrain implements IDAOTrain {
 	}
 	
 	/**
+	 * Cherche une liste de trains partant de la date dans la base de 
+	 * données DataStore. Normalement on recup�re 
+	 * 
+	 * @param date
+	 * @return liste de trains
+	 */
+	public List<Train> findTrainByDate() {
+		// Chercher dans le DataStore
+		List<Train> trains= ofy().load().type(Train.class).
+				filter("dateDate <", new Date()).list();
+		// Envoyer une requête à la sncf
+		return trains; 
+	}
+	
+	/**
 	 * Cherche une liste de trains partant de la gare de départ et arrivant de
 	 * la gare d'arrivée dans la base de données DataStore.
 	 * 
@@ -93,8 +109,10 @@ public class DAOTrain implements IDAOTrain {
 	 * @param train
 	 */
 	public void remove(Train train) {
-		ofy().delete().type(Train.class).id(train.getNum()).now();
+		ofy().delete().type(Train.class).id(train.getDate()).now();
 	}
+	
+
 	
 	/**
 	 * Met à jour un train dans la base de données DataStore.
