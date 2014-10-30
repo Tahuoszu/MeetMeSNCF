@@ -117,10 +117,13 @@ $(document).ready(function() {
     });
 });
 
-// Autocompletion pour la recherche de gares
-var options, a;
+// Autocomplétion pour la recherche de gares de départ et d'arrivée
+var options, a, b;
 jQuery(function(){
     options = { serviceUrl:'/search' };
     a = $('#depart').autocomplete(options);
 });
-
+jQuery(function(){
+  options = { serviceUrl:'/search' };
+  b = $('#arrivee').autocomplete(options);
+});

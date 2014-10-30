@@ -57,8 +57,8 @@ public class SearchServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		// Récupération de la requête utilisateur pour l'autocomplétion
-		String query = request.getParameter("depart");
-		//List<String> depart = daoGare.findGare(query);
+		String query_depart = request.getParameter("depart");
+		//List<String> depart = daoGare.findGare(query_depart);
         List<String> depart = new ArrayList<String>();
         depart.add("Vincennes");
         depart.add("Val de Fontenay");
@@ -77,23 +77,22 @@ public class SearchServlet extends HttpServlet {
         pw.flush();
         
         // Génération de liste des gares d'arrivée
-        query = request.getParameter("arrivee");
-        //List<String> arrivee = daoGare.getGaresByLine(query);
-        List<String> arrivee = new ArrayList<String>();
+        String query_arrivee = request.getParameter("arrivee");
+        //List<String> arrivee = daoGare.getGaresByLine(query_arrivee);
+        /*List<String> arrivee = new ArrayList<String>();
         arrivee.add("Châtelet - Les Halles");
         arrivee.add("Gare de Lyon");
         arrivee.add("Nation");
         map.put("suggestions", arrivee);
         gson = (new GsonBuilder()).create();
-		json =gson.toJson(map);
+		json = gson.toJson(map);
 		
 		pw = new PrintWriter(response.getOutputStream());
         pw.print(json);
-        pw.flush();
-		
+        pw.flush();*/
+        
 		response.setContentType("application/json");
 		response.setCharacterEncoding("ISO-8859-15");
-		response.getWriter().write(json);
 	    
 	}
 

@@ -1,5 +1,9 @@
-/servlets/
+/META-INF/
 /dao/
 /domain/
-/utils/
 /forms/
+/log4j.properties
+/servlets/
+/sncf-lignes-par-gares-idf.csv
+/tests/
+/utils/
