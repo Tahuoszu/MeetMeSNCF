@@ -7,6 +7,16 @@ import domain.User;
 public interface IDAOUser extends IDAO<User> {
 	
 	/**
+	 * Méthode permettant de vérifier la présence d'un utilisateur
+	 * dans la base de donnée DataStore à partir de son login et mot de passe.
+	 * 
+	 * @param login
+	 * @param password 
+	 * @return user
+	 * */
+	public User find(String login, String password);
+	
+	/**
 	 * Méthode permettant de trouver une liste d'utilisateur commençant par la
 	 * query de son identifiant dans la base de données.
 	 * 

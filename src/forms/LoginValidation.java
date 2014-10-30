@@ -1,14 +1,14 @@
 package forms;
 
 import dao.DAOUser;
-import dao.IDAO;
+import dao.IDAOUser;
 import domain.User;
 
 public class LoginValidation {
 
-	private IDAO<User> daoUser;
+	private IDAOUser daoUser;
 	
-	public LoginValidation(IDAO<User> daoUser) {
+	public LoginValidation(IDAOUser daoUser) {
 		this.daoUser = daoUser;
 	}
 	
@@ -21,13 +21,11 @@ public class LoginValidation {
 	public boolean isValid(String login, String password) {
 		
 		if(daoUser instanceof DAOUser) {
-			User user = ((DAOUser) daoUser).find(login, password);
+			User user = daoUser.find(login, password);
 			if(user != null)
 				return true;
 		}
 		return false;
-		
-		//return false;
 	}
 	
 }

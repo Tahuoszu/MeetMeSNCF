@@ -3,6 +3,15 @@ package dao;
 public class DAOFactory {
 
 	/**
+	 * Méthode permettant de créer une instance de DAOGare.
+	 * 
+	 * @return une instance de DAOGare
+	 */
+	public static IDAOGare createDAOGare() {
+		return new DAOGare();
+	}
+	
+	/**
 	 * Méthode permettant de créer une instance de DAOMessage.
 	 * 
 	 * @return une instance de DAOMessage

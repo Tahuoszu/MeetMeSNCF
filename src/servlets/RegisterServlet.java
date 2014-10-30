@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tests.testUser;
 import utils.EmailSender;
 import utils.ImportStation;
 import dao.DAOFactory;
-import dao.DAOTrain;
 import dao.IDAO;
-import domain.Train;
 import domain.User;
 import forms.RegisterForm;
 
@@ -60,8 +59,7 @@ public class RegisterServlet extends HttpServlet {
 		if(errors.isEmpty()) {
 			User user = registerForm.createUser();
 			daoUser.add(user);
-			DAOTrain dao =new  DAOTrain();
-			List<Train> trains  = dao.findTrain("87276451");
+			testUser.createTestUsers();
 			ImportStation.init();
 			EmailSender.sendConfirmationEmail(user.getEmail());
 		}

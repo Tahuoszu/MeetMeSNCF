@@ -1,4 +1,5 @@
 package servlets;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,8 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import utils.Security;
 import dao.DAOFactory;
-import dao.IDAO;
-import domain.User;
+import dao.IDAOUser;
 import forms.LoginValidation;
 
 public class LoginServlet extends HttpServlet {
@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 	private static final String LOGIN_JSP = "/jsp/login.jsp";
 	private static final String SEARCH_JSP = "/jsp/search.jsp";
 	
-	private IDAO<User> daoUser;
+	private IDAOUser daoUser;
 	
 	@Override
 	public void init() throws ServletException {

@@ -47,10 +47,13 @@ public class DAOTrain implements IDAOTrain {
 	 * @return liste de trains
 	 */
 	public List<Train> findTrain(String depart) {
-		List<Train> trains= ofy().load().type(Train.class).filter("num ==", depart).list();
-		if (trains.isEmpty()){
-			trains =  XmlTools.XmlToTrains( new Requete(depart,"").requeteSNCF());
-			for (int i = 0 ; i < trains.size(); i++){
+		// Chercher dans le DataStore
+		List<Train> trains= ofy().load().type(Train.class).
+				filter("num ==", depart).list();
+		// Envoyer une requête à la sncf
+		if (trains.isEmpty()) {
+			trains =  XmlTools.XmlToTrains(new Requete(depart, "").requeteSNCF());
+			for (int i = 0 ; i < trains.size(); i++) {
 				add(trains.get(i));
 			}
 		}
@@ -67,17 +70,17 @@ public class DAOTrain implements IDAOTrain {
 	 * @return liste de trains
 	 */
 	public List<Train> findTrain(String depart, String arrivee) {
+		// Vérification de la présence d'une gare d'arrivée
 		if (arrivee.isEmpty())
 			return findTrain(depart);
 		// Chercher dans le DataStore
-		String num = ofy().load().type(Gare.class).
-				filter("name ==", depart).list().get(0).getUIC();
 		List<Train> trains = ofy().load().type(Train.class).
-				filter("num ==", num).list();
-		//requete a la sncf
-		if (trains.isEmpty()){
-			trains =  XmlTools.XmlToTrains(new Requete(depart,arrivee).requeteSNCF());
-			for (int i = 0 ; i < trains.size() - 1; i++){
+				filter("num ==", depart).list();
+		// ToDo : Filtrer avec les trains qui passent par la station d'arrivée
+		// Envoyer une requête à la sncf
+		if (trains.isEmpty()) {
+			trains =  XmlTools.XmlToTrains(new Requete(depart, arrivee).requeteSNCF());
+			for (int i = 0 ; i < trains.size() - 1; i++) {
 				add(trains.get(i));
 			}
 		}

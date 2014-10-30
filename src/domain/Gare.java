@@ -17,7 +17,7 @@ public class Gare implements Serializable {
 	@Id private final String UIC;
 	
 	// Nom de la gare
-	 private final String namae;
+	 private final String name;
 	 
 	
 	// Numéro et type des lignes passant par la gare
@@ -37,7 +37,7 @@ public class Gare implements Serializable {
 	public Gare(String uic, String name/*, Map<String, String> lines*/) {
 		super();
 		this.UIC   = uic;
-		this.namae  = name;
+		this.name  = name;
 		//this.lines = lines;
 		this.listegares = null;
 	}
@@ -56,7 +56,7 @@ public class Gare implements Serializable {
 			/*Map<String, String> lines,*/ Key listegares) {
 		super();
 		this.UIC   = uic;
-		this.namae  = name;
+		this.name  = name;
 		//this.lines = lines;
 		this.listegares = listegares;
 	}
@@ -76,7 +76,7 @@ public class Gare implements Serializable {
 	 * @return name
 	 */
 	public String getName() {
-		return namae;
+		return name;
 	}
 
 	/**

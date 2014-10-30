@@ -45,6 +45,17 @@ public class DAOGare implements IDAOGare {
 		return ofy().load().type(Gare.class).filter("field >=", gare).
 				filter("field <", gare + "\uFFFD").list();
 	}
+
+	/**
+	 * Retourne le code UIC de la gare à partir de son nom (appel au DataStore).
+	 * 
+	 * @param nom de la gare
+	 * @return code UIC de la gare
+	 */
+	public String getGareName(String gare) {
+		return ofy().load().type(Gare.class).
+				filter("name ==", gare).list().get(0).getUIC();
+	}
 	
 	/**
 	 * Supprime une gare à partir de son nom dans la base de données DataStore.
