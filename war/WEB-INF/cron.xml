@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
   <cron>
-    <url>/cron</url>
+    <url>/cronServlet</url>
     <description>Delete old SNCF requests</description>
-    <schedule>every 1 minutes</schedule>
+    <schedule>every 10 minutes</schedule>
+    <timezone>/Amsterdam</timezone>
   </cron>
 </cronentries>

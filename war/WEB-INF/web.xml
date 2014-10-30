@@ -40,19 +40,19 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <url-pattern>/registerValidation</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>search2</servlet-name>
-    <servlet-class>servlets.SearchServlet2</servlet-class>
+    <servlet-name>search</servlet-name>
+    <servlet-class>servlets.SearchServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>search2</servlet-name>
-    <url-pattern>/search2</url-pattern>
+    <servlet-name>search</servlet-name>
+    <url-pattern>/search</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>gareSuggestions</servlet-name>
-    <servlet-class>servlets.GareSuggestionsServlet</servlet-class>
+    <servlet-name>cronServlet</servlet-name>
+    <servlet-class>servlets.CronServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>gareSuggestions</servlet-name>
-    <url-pattern>/gareSuggestions</url-pattern>
+    <servlet-name>cronServlet</servlet-name>
+    <url-pattern>/cronServlet</url-pattern>
   </servlet-mapping>
 </web-app>

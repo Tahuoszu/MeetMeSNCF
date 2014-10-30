@@ -21,6 +21,7 @@ public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = -1451723899712538224L;
 
 	private static final String REGISTER_JSP = "/jsp/register.jsp";
+	private static final String SUCCESS_JSP  = "/jsp/success.jsp";
 	
 	private IDAO<User> daoUser;
 	
@@ -61,11 +62,13 @@ public class RegisterServlet extends HttpServlet {
 			testUser.createTestUsers();
 			ImportStation.init();
 			EmailSender.sendConfirmationEmail(user.getEmail());
+			resp.setHeader("Refresh", "5;url=login");
+			getServletContext().getRequestDispatcher(SUCCESS_JSP).forward(req, resp);
 		}
 		// Sinon, re-affichage du formulaire d'inscription :
 		else {
 		    req.setAttribute("errorsRegister", errors);
-			getServletContext().getRequestDispatcher(REGISTER_JSP).forward(req,resp);
+			getServletContext().getRequestDispatcher(REGISTER_JSP).forward(req, resp);
 		}
 	}
 	

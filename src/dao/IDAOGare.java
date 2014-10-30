@@ -14,7 +14,7 @@ public interface IDAOGare extends IDAO<Gare> {
 	 * @param nom de la gare
 	 * @return liste de gares
 	 */
-	public List<Gare> findGare(String gare);
+	public List<String> findGare(String gare);
 	
 	/**
 	 * Retourne le code UIC de la gare à partir de son nom (appel au DataStore).

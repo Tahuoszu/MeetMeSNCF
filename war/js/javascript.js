@@ -120,7 +120,7 @@ $(document).ready(function() {
 // Autocompletion pour la recherche de gares
 var options, a;
 jQuery(function(){
-    options = { serviceUrl:'/gareSuggestions' };
+    options = { serviceUrl:'/search' };
     a = $('#depart').autocomplete(options);
 });
 

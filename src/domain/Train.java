@@ -2,9 +2,8 @@ package domain;
 
 import java.io.Serializable;
 
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.*;
+
 @Entity
 @Index
 public class Train implements Serializable {
@@ -16,7 +15,7 @@ public class Train implements Serializable {
 	
 	//Date de passage du train dans la gare au format date pour pouvoir indexer par la date
 	//private Date dateDate;
-	//mettre dans le phraseur : Date(int year, int month, int date, int hrs, int min) pour créer le type date
+	//mettre dans le phraseur : Date(int year, int month, int date, int hrs, int min) pour crï¿½er le type date
 	
 	// NumÃ©ro de train (UIC)
 	private String num;

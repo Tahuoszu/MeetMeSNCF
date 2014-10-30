@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>
     <script type="text/javascript" src="../js/jquery.autocomplete.min.js"></script>
-    <script type="text/javascript" src="../js/javascript.js"></script>  
+    <script type="text/javascript" src="../js/javascript.js"></script>
   </head>
   <body>
   	<h1><p class="text-center">Bienvenu sur MeetMeSNCF !</p></h1>
@@ -26,26 +26,16 @@
 			<legend>Rechercher un train</legend>
 			<!-- Select Basic -->
 			<div class="control-group">
-			  <label class="control-label" for="depart">Départ :</label>
+			  <label class="control-label" for="depart">Départ</label>
 			  <div class="controls">
                 <input type="text" name="depart" id="depart" class="input-large" />
-        <!--  
-			    <select id="depart" name="depart" class="input-large">
-			      <option>Gare1</option>
-			      <option>Gare2</option>
-			    </select>
-          -->
 			  </div>
 			</div>
-			
 			<!-- Select Basic -->
 			<div class="control-group">
-			  <label class="control-label" for="arrivee">Arrivée :</label>
+			  <label class="control-label" for="arrivee">Arrivée</label>
 			  <div class="controls">
-			    <select id="arrivee" name="arrivee" class="input-large">
-			      <option>Gare1</option>
-			      <option>Gare2</option>
-			    </select>
+			    <input type="text" name="arrivee" id="arrivee" class="input-large" />
 			  </div>
 			</div>
 			

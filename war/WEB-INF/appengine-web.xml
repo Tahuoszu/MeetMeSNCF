@@ -27,7 +27,7 @@
     stale session data. For details, see
     http://code.google.com/appengine/docs/java/config/appconfig.html#Enabling_Sessions
   -->
-  
+  <sessions-enabled>true</sessions-enabled>
   <!-- 
     On indique a google les fichiers statiques pour que celui-ci puisse les mettre 
     sur des serveurs specifiques. Google peut ainsi les dupliquer sur plusieurs 

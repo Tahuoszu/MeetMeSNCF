@@ -19,11 +19,11 @@ public class LoginValidation {
 	 * @return true si le couple login - mot de passe est valide et false sinon.
 	 */
 	public boolean isValid(String login, String password) {
-		
 		if(daoUser instanceof DAOUser) {
 			User user = daoUser.find(login, password);
 			if(user != null)
 				return true;
+			System.out.println("Hello enculé !!!");
 		}
 		return false;
 	}

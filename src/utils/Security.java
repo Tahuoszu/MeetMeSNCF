@@ -22,4 +22,13 @@ public class Security {
 		return passwordEncryptor.encryptPassword(password);
 	}
 	
+	public static boolean checkPassword(String plainPassword,
+			String encryptedPassword) {
+		ConfigurablePasswordEncryptor passwordEncryptor = 
+				new ConfigurablePasswordEncryptor();
+		passwordEncryptor.setAlgorithm(ENCRYPTION_ALGO);
+		passwordEncryptor.setPlainDigest( false );
+		return passwordEncryptor.checkPassword(plainPassword, encryptedPassword);
+	}
+	
 }

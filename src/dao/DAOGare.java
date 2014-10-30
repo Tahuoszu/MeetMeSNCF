@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.googlecode.objectify.ObjectifyService;
-
 import static com.googlecode.objectify.ObjectifyService.ofy;
+
 import domain.Gare;
 
 public class DAOGare implements IDAOGare {
@@ -42,9 +42,15 @@ public class DAOGare implements IDAOGare {
 	 * @param nom de la gare
 	 * @return liste de gares
 	 */
-	public List<Gare> findGare(String gare) {
-		return ofy().load().type(Gare.class).filter("field >=", gare).
+	public List<String> findGare(String gare) {
+		List<Gare> gares = ofy().load().type(Gare.class).
+				filter("field >=", gare).
 				filter("field <", gare + "\uFFFD").list();
+		List<String> gares_name = new ArrayList<String>();
+		for (Gare g : gares) {
+			gares_name.add(g.getName());
+		}
+		return gares_name;
 	}
 
 	/**

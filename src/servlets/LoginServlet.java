@@ -16,7 +16,7 @@ import forms.LoginValidation;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8431430892643244256L;
-	private static final String LOGIN_JSP = "/jsp/login.jsp";
+	private static final String LOGIN_JSP  = "/jsp/login.jsp";
 	private static final String SEARCH_JSP = "/jsp/search.jsp";
 	
 	private IDAOUser daoUser;
@@ -48,12 +48,14 @@ public class LoginServlet extends HttpServlet {
 		
 		// Si le couple login - password est valide
 		if(lv.isValid(login, password)) {
+			System.out.println("Coucou fdp !!!!!");
 			HttpSession session = req.getSession();
 			session.setAttribute("login", login);
 			page = SEARCH_JSP;
 		}
 		// Si le couple login - password n'est pas valide : on reaffiche la page avec les erreurs
 		else {
+			System.out.println("Coucou enculé !!!!!");
 			req.setAttribute("oldLogin", login);
 			req.setAttribute("errorLogin", true);
 			page = LOGIN_JSP;

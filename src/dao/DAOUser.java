@@ -2,9 +2,11 @@ package dao;
 
 import java.util.List;
 
+import utils.Security;
 import domain.User;
 
 import com.googlecode.objectify.ObjectifyService;
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 public class DAOUser implements IDAOUser {
@@ -37,10 +39,14 @@ public class DAOUser implements IDAOUser {
 		User u = ofy().load().type(User.class).id(login).now();
 		if (u == null)
 			return null;
-		if (u.getPassword() != password) {
-			return null;
+		System.out.println(password);
+		System.out.println(u.getPassword());
+		//if (Security.checkPassword(password, u.getPassword())) {
+		if (password.equals(u.getPassword())) {
+			System.out.println(u);
+			return u;
 		}
-		return u;
+		return null;
 	}
 
 	/**
