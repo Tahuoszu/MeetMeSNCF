@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.googlecode.objectify.annotation.*;
 
@@ -9,16 +10,14 @@ import com.googlecode.objectify.annotation.*;
 public class Train implements Serializable {
 
 	private static final long serialVersionUID = 7754525956851059700L;
-
-	// Date de passage du train dans la gare
-	@Id private String date;
+	// Numéro de train (UIC)
+	@Id private String num;
 	
 	//Date de passage du train dans la gare au format date pour pouvoir indexer par la date
-	//private Date dateDate;
+	private Date date;
 	//mettre dans le phraseur : Date(int year, int month, int date, int hrs, int min) pour cr�er le type date
 	
-	// Numéro de train (UIC)
-	private String num;
+
 	
 	// Code mission du train
 	private String miss;
@@ -31,7 +30,7 @@ public class Train implements Serializable {
 	
 	public Train() {}
 	
-	public Train(String date, String num, String miss, String term,
+	public Train(Date date, String num, String miss, String term,
 			String etat) {
 		super();
 		this.date = date;
@@ -46,7 +45,7 @@ public class Train implements Serializable {
 	 * 
 	 * @return date
 	 */
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
@@ -86,7 +85,7 @@ public class Train implements Serializable {
 		return etat;
 	}
 	
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

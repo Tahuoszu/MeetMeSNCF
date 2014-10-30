@@ -1,6 +1,9 @@
 package utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.xml.sax.Attributes;
@@ -43,7 +46,15 @@ public class TrainHandler extends DefaultHandler {
             trains.add(train);
         }
         else if(qName.equals("date")) {
-            train.setDate(buffer.toString());
+        	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        	Date date = new Date();
+			try {
+				date = formatter.parse(buffer.toString());
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            train.setDate(date);
             buffer = null;
         }
         else if(qName.equals("num")) {

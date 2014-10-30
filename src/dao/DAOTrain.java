@@ -70,7 +70,7 @@ public class DAOTrain implements IDAOTrain {
 	public List<Train> findTrainByDate() {
 		// Chercher dans le DataStore
 		List<Train> trains= ofy().load().type(Train.class).
-				filter("dateDate <", new Date()).list();
+				filter("date <", new Date()).list();
 		// Envoyer une requête à la sncf
 		return trains; 
 	}
@@ -108,7 +108,7 @@ public class DAOTrain implements IDAOTrain {
 	 * @param train
 	 */
 	public void remove(Train train) {
-		ofy().delete().type(Train.class).id(train.getDate()).now();
+		ofy().delete().type(Train.class).id(train.getNum()).now();
 	}
 	
 
