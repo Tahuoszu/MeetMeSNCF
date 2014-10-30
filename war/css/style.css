@@ -1,6 +1,5 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  overflow-y: scroll; /* Pour que la barre de defilement ne decale pas tout */
 }
 
 .help-block {

@@ -16,6 +16,11 @@
 <script type="text/javascript" src="../js/javascript.js"></script>
 </head>
 <body>
+
+  <jsp:include page="navBar.jsp">
+    <jsp:param name="active" value="login" />
+  </jsp:include>
+
   <div class="container">
 
     <form method="post"

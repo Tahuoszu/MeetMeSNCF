@@ -14,6 +14,9 @@
 <script type="text/javascript" src="../js/javascript.js"></script>
 </head>
 <body>
+
+    <jsp:include page="navBar.jsp"></jsp:include>
+
 	<form class="form-horizontal well col-md-offset-3 col-md-6" role="form">
 		<fieldset>
 			<legend><h3>Inscription Réussie !</h3></legend>

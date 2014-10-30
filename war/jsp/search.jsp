@@ -17,6 +17,11 @@
     <script type="text/javascript" src="../js/javascript.js"></script>
   </head>
   <body>
+  
+    <jsp:include page="navBar.jsp">
+      <jsp:param name="active" value="search" />
+    </jsp:include>
+  
   	<h1><p class="text-center">Bienvenu sur MeetMeSNCF !</p></h1>
   	<div class="container">
       <form method="post" action="/search" id="searchForm"

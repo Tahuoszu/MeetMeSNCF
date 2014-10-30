@@ -18,6 +18,10 @@
 </head>
 <body>
 
+  <jsp:include page="navBar.jsp">
+    <jsp:param name="active" value="register" />
+  </jsp:include>
+
   <div class="container">
     <form role="form" method="post"
       action="/register"
