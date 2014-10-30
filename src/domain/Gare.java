@@ -1,8 +1,9 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.List;
+//import java.util.Map;
+//import java.util.Map.Entry;
 
 import com.google.appengine.api.datastore.Key;
 import com.googlecode.objectify.annotation.*;
@@ -19,7 +20,9 @@ public class Gare implements Serializable {
 	// Nom de la gare
 	 private final String name;
 	 
-	
+	// Lignes passant par la gare
+	private final List<String> lines;
+	 
 	// Numéro et type des lignes passant par la gare
 	//private final Map<String, String> lines;
 
@@ -34,11 +37,11 @@ public class Gare implements Serializable {
 	 * @param name
 	 * @param lines
 	 */
-	public Gare(String uic, String name/*, Map<String, String> lines*/) {
+	public Gare(String uic, String name, List<String> lines) {
 		super();
 		this.UIC   = uic;
 		this.name  = name;
-		//this.lines = lines;
+		this.lines = lines;
 		this.listegares = null;
 	}
 	
@@ -52,12 +55,11 @@ public class Gare implements Serializable {
 	 * @param lines
 	 * @param listegares
 	 */
-	public Gare(String uic, String name,
-			/*Map<String, String> lines,*/ Key listegares) {
+	public Gare(String uic, String name, List<String> lines, Key listegares) {
 		super();
 		this.UIC   = uic;
 		this.name  = name;
-		//this.lines = lines;
+		this.lines = lines;
 		this.listegares = listegares;
 	}
 	
@@ -66,10 +68,10 @@ public class Gare implements Serializable {
 	 * 
 	 * @return lines
 	 */
-	/*public Map<String, String> getLines() {
+	public List<String> getLines() {
 		return lines;
 	}
-	*/
+	
 	/**
 	 * Retourne le nom de la gare
 	 * 
@@ -102,13 +104,16 @@ public class Gare implements Serializable {
 	 * 
 	 * @return description de la gare
 	 */
-	/*public String toString() {
+	public String toString() {
 		String str = "Gare [UIC=" + UIC + ", name=" + name + ", lines={";
-		for (Entry<String, String> l : lines.entrySet())
+		/*for (Entry<String, String> l : lines.entrySet())
 			str += "(" + l.getKey() + "," + l.getValue() + "), ";
+		str = str.substring(0, str.length() - 2);*/
+		for (String line : lines)
+			str += line + ", ";
 		str = str.substring(0, str.length() - 2);
 		str += "}]";
 		return str;
-	}*/
+	}
 	
 }

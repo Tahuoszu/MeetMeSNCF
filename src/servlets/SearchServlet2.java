@@ -1,7 +1,11 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import dao.DAOFactory;
 import dao.IDAOGare;
 import dao.IDAOTrain;
 import dao.IDAOUser;
+import domain.Gare;
 import domain.Train;
 import domain.User;
 
@@ -49,7 +55,35 @@ public class SearchServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher(SEARCH_JSP).forward(request, response);
+		
+		// Récupération de la requête utilisateur pour l'autocomplétion
+		String query = request.getParameter("query");
+		List<Gare> gares = daoGare.findGare(query);
+		
+        List<String> list = new ArrayList<String>();
+        list.add("Vincennes");
+        list.add("Val de Fontenay");
+        list.add("Nanterres");
+        Map<String,List<String>> map = new HashMap<String,List<String>>();
+        map.put("suggestions", list);
+
+        Gson gson = (new GsonBuilder()).create();
+
+        // On crée une représentation JSON de notre map, 
+        // sous la forme d'une chaîne de caractères.
+        String json = gson.toJson(map);
+        
+        // On écrit du JSON sur le flux de sortie de la réponse HTTP.
+        PrintWriter pw = new PrintWriter(response.getOutputStream());
+
+        pw.print(json);
+        pw.flush();
+        
+        //List<String> list = new ArrayList<String>();
+        //list = daoGare.getGaresByLine(query);
+        
+		response.setContentType("application/json");
+	    
 	}
 
 	/**
@@ -73,8 +107,8 @@ public class SearchServlet2 extends HttpServlet {
 			// Recherche des trains 
 			if (user.isEmpty()) {
 				// Convertit le nom des gares vers leur code UIC respectif
-				String num_depart  = daoGare.getGareName(depart);
-				String num_arrivee = daoGare.getGareName(arrivee);
+				String num_depart  = daoGare.getGareUIC(depart);
+				String num_arrivee = daoGare.getGareUIC(arrivee);
 				// Recherche dans le DataStore et/ou envoie une requête SNCF 
 				List<Train> trains = daoTrain.findTrain(num_depart, num_arrivee);
 				request.setAttribute("train", trains);

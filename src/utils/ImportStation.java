@@ -1,10 +1,11 @@
 package utils;
 
 import java.io.*;
-import java.util.HashMap;
+import java.util.ArrayList;
+//import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -53,12 +54,13 @@ public class ImportStation {
 		try {
 			CSVReader reader = new CSVReader(buf, ';');
 			String[] row = null;
-			Map<String, String> lines;
+			//Map<String, String> lines;
+			List<String> lines;
 			// On saute la première ligne.
 			row = reader.readNext();
 			while ((row = reader.readNext()) != null) {
 				lines = reduceArray(row);
-				gares.add(new Gare(row[0], row[1]/*, lines*/));
+				gares.add(new Gare(row[0], row[1], lines));
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -74,7 +76,43 @@ public class ImportStation {
 	 * @param lines
 	 * @return
 	 */
-	public static Map<String, String> reduceArray(String[] row) {
+	public static List<String> reduceArray(String[] row) {
+		List<String> lines = new ArrayList<String>();
+		for (int i = 6; i < row.length; i++) {
+			// Si la case est vide, on la saute.
+			if (row[i].isEmpty())
+				continue;
+			// Liste des RER
+			if (!row[3].isEmpty() && i < 11)
+				lines.add(ARRAY[3]);
+			// Liste des bus
+			else if (row[3].isEmpty() && i < 11)
+				lines.add(ARRAY[5]);
+			else if (!row[5].isEmpty() && i >= 11)
+				lines.add(ARRAY[5]);
+			// Liste des trams
+			else if (!row[4].isEmpty() && i == 19)
+				lines.add(ARRAY[4]);
+			// Liste des trains
+			else if (!row[2].isEmpty() && i >= 11)
+				lines.add(ARRAY[2]);
+			// Liste des TER (= trains)
+			else if (!row[2].isEmpty() && i == 20)
+				lines.add(ARRAY[2]);
+			else
+				System.out.print("");
+		}
+		return lines;
+	}
+	
+	/**
+	 * Réduit le tableau de buffer et retourne la liste des lignes passat par la
+	 * gare.
+	 * 
+	 * @param lines
+	 * @return
+	 */
+	/*public static Map<String, String> reduceArray(String[] row) {
 		Map<String, String> lines = new HashMap<String, String>();
 		for (int i = 6; i < row.length; i++) {
 			// Si la case est vide, on la saute.
@@ -101,7 +139,7 @@ public class ImportStation {
 				System.out.print("");
 		}
 		return lines;
-	}
+	}*/
 	
 	/**
 	 * Ajoute les gares dans la base de données DataStore

@@ -22,6 +22,14 @@ public interface IDAOGare extends IDAO<Gare> {
 	 * @param nom de la gare
 	 * @return code UIC de la gare
 	 */
-	public String getGareName(String gare);
+	public String getGareUIC(String gare);
+	
+	/**
+	 * Retourne la liste des gares d'une ligne à partir d'une gare.
+	 * 
+	 * @param gare
+	 * @return liste de gare
+	 */
+	public List<String> getGaresByLine(String gare);
 	
 }
