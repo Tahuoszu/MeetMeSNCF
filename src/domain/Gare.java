@@ -15,13 +15,14 @@ public class Gare implements Serializable {
 	private static final long serialVersionUID = -6809445579040707116L;
 	
 	// Identifiant de la gare
-	@Id private final String UIC;
+	
+	 @Id private  String UIC;
 	
 	// Nom de la gare
-	 private final String name;
+	 private String nomGare;
 	 
 	// Lignes passant par la gare
-	private final List<String> lines;
+	private List<String> lines;
 	 
 	// Numéro et type des lignes passant par la gare
 	//private final Map<String, String> lines;
@@ -40,7 +41,7 @@ public class Gare implements Serializable {
 	public Gare(String uic, String name, List<String> lines) {
 		super();
 		this.UIC   = uic;
-		this.name  = name;
+		this.nomGare  = name;
 		this.lines = lines;
 		this.listegares = null;
 	}
@@ -58,7 +59,7 @@ public class Gare implements Serializable {
 	public Gare(String uic, String name, List<String> lines, Key listegares) {
 		super();
 		this.UIC   = uic;
-		this.name  = name;
+		this.nomGare  = name;
 		this.lines = lines;
 		this.listegares = listegares;
 	}
@@ -78,7 +79,7 @@ public class Gare implements Serializable {
 	 * @return name
 	 */
 	public String getName() {
-		return name;
+		return nomGare;
 	}
 
 	/**
@@ -105,7 +106,7 @@ public class Gare implements Serializable {
 	 * @return description de la gare
 	 */
 	public String toString() {
-		String str = "Gare [UIC=" + UIC + ", name=" + name + ", lines={";
+		String str = "Gare [UIC=" + UIC + ", name=" + nomGare + ", lines={";
 		/*for (Entry<String, String> l : lines.entrySet())
 			str += "(" + l.getKey() + "," + l.getValue() + "), ";
 		str = str.substring(0, str.length() - 2);*/

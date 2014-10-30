@@ -15,7 +15,6 @@ import domain.Train;
 public class DAOTrain implements IDAOTrain {
 
 	static {
-		ObjectifyService.register(Gare.class);
 		ObjectifyService.register(Train.class);
     }
 	
@@ -63,7 +62,7 @@ public class DAOTrain implements IDAOTrain {
 	
 	/**
 	 * Cherche une liste de trains partant de la date dans la base de 
-	 * données DataStore. Normalement on recup�re 
+	 * données DataStore. Normalement on recup�re 
 	 * 
 	 * @param date
 	 * @return liste de trains

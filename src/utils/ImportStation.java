@@ -84,21 +84,21 @@ public class ImportStation {
 				continue;
 			// Liste des RER
 			if (!row[3].isEmpty() && i < 11)
-				lines.add(ARRAY[3]);
+				lines.add(ARRAY[i]);
 			// Liste des bus
 			else if (row[3].isEmpty() && i < 11)
-				lines.add(ARRAY[5]);
+				lines.add(ARRAY[i]);
 			else if (!row[5].isEmpty() && i >= 11)
-				lines.add(ARRAY[5]);
+				lines.add(ARRAY[i]);
 			// Liste des trams
 			else if (!row[4].isEmpty() && i == 19)
-				lines.add(ARRAY[4]);
+				lines.add(ARRAY[i]);
 			// Liste des trains
 			else if (!row[2].isEmpty() && i >= 11)
-				lines.add(ARRAY[2]);
+				lines.add(ARRAY[i]);
 			// Liste des TER (= trains)
 			else if (!row[2].isEmpty() && i == 20)
-				lines.add(ARRAY[2]);
+				lines.add(ARRAY[i]);
 			else
 				System.out.print("");
 		}
@@ -148,10 +148,10 @@ public class ImportStation {
 	 */
 	public static void addGare(List<Gare> gares) {
 		DAOGare daogare = new DAOGare();
-		Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
+		//Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
+		//daogare.remove();
 		for (Gare gare : gares) {
-			gare.setKey(cle);
-			daogare.remove(gare);
+			//gare.setKey(cle);
 			daogare.add(gare);
 		}
 	}

@@ -31,7 +31,7 @@ public class DAOGare implements IDAOGare {
 	 */
 	public Gare find(String gare) {
 		return ofy().load().type(Gare.class).
-				filter("name ==", gare).list().get(0);
+				filter("nomGare ==", gare).list().get(0);
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class DAOGare implements IDAOGare {
 	 */
 	public String getGareUIC(String gare) {
 		return ofy().load().type(Gare.class).
-				filter("name ==", gare).list().get(0).getUIC();
+				filter("nomGare ==", gare).list().get(0).getUIC();
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class DAOGare implements IDAOGare {
 	public List<String> getGaresByLine(String gare) {
 		// Récupère la liste des lignes
 		List<String> lines = ofy().load().type(Gare.class).
-				filter("name ==", gare).list().get(0).getLines();
+				filter("nomGare ==", gare).list().get(0).getLines();
 		// Récupère la liste des gares
 		List<Gare> gares = new ArrayList<Gare>();
 		for (String line : lines) {
@@ -95,6 +95,11 @@ public class DAOGare implements IDAOGare {
 	 */
 	public void remove(Gare gare) {
 		ofy().delete().type(Gare.class).id(gare.getUIC()).now();
+	}
+	
+	
+	public void remove(){
+		ofy().delete().type(Gare.class);
 	}
 	
 	/**
