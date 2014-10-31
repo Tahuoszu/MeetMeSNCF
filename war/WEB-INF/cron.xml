@@ -4,6 +4,6 @@
     <url>/cronServlet</url>
     <description>Delete old SNCF requests</description>
     <schedule>every 1 minutes</schedule>
-    <timezone>/Amsterdam</timezone>
+    <timezone>Europe/Amsterdam</timezone>
   </cron>
 </cronentries>

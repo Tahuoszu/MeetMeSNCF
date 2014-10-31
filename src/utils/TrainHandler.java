@@ -10,6 +10,9 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.googlecode.objectify.Key;
+
+import domain.Gare;
 import domain.Train;
 
 public class TrainHandler extends DefaultHandler {
@@ -17,6 +20,7 @@ public class TrainHandler extends DefaultHandler {
     private List<Train> trains;
     private Train train;
     private StringBuffer buffer;
+    private String gare;
     
     public TrainHandler() {
         super();
@@ -29,9 +33,13 @@ public class TrainHandler extends DefaultHandler {
        
        if(qName.equals("passages")) {
            trains = new ArrayList<Train>();
+           gare = attributes.getValue("gare");
+           
        }
        else if(qName.equals("train")) {
            train = new Train();
+           Key<Gare> g = Key.create(Gare.class, gare);
+           train.setGare(g);
        }
         
        buffer = new StringBuffer();

@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.*;
 
 @Entity
@@ -10,13 +11,11 @@ import com.googlecode.objectify.annotation.*;
 public class Train implements Serializable {
 
 	private static final long serialVersionUID = 7754525956851059700L;
-	// Numéro de train (UIC)
+	// Numéro de train
 	@Id private String num;
 	
 	//Date de passage du train dans la gare au format date pour pouvoir indexer par la date
 	private Date date;
-	//mettre dans le phraseur : Date(int year, int month, int date, int hrs, int min) pour cr�er le type date
-	
 	// Code mission du train
 	private String miss;
 	
@@ -26,20 +25,33 @@ public class Train implements Serializable {
 	// Etat remarquable du train
 	private String etat;
 	
+	@Parent private Key<Gare> gare;
+	
 	public Train() {}
 	
 	public Train(Date date, String num, String miss, String term,
-			String etat) {
+			String etat, Key<Gare> gare) {
 		super();
 		this.date = date;
 		this.num  = num;
 		this.miss = miss;
 		this.term = term;
 		this.etat = etat;
+		this.gare = gare;
+	}
+
+	
+	/***
+	 * Retourne l'id de la gare
+	 * 
+	 * @return gare
+	 */
+	public Key<Gare> getGare() {
+		return gare;
 	}
 
 	/**
-	 * Retourne le nom de la gare
+	 * Retourne la date de d�part du train
 	 * 
 	 * @return date
 	 */
@@ -103,4 +115,9 @@ public class Train implements Serializable {
         this.term = term;
     }
 	
+
+	public void setGare(Key<Gare> gare) {
+		this.gare = gare;
+	}
+
 }

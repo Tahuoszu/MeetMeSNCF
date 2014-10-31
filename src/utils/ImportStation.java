@@ -149,9 +149,9 @@ public class ImportStation {
 	public static void addGare(List<Gare> gares) {
 		DAOGare daogare = new DAOGare();
 		Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
-		daogare.remove();
+		//daogare.remove();
 		for (Gare gare : gares) {
-			daogare.remove(gare);
+			//daogare.remove(gare);
 			gare.setKey(cle);
 			daogare.add(gare);
 		}

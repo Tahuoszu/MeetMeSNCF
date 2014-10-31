@@ -96,14 +96,14 @@ public class DAOGare implements IDAOGare {
 	public void remove(Gare gare) {
 		ofy().delete().type(Gare.class).id(gare.getUIC()).now();
 	}
-	
-	/**
-	 * Supprime l'entité Gare de la base de données DataStore.
-	 */
-	public void remove(){
-		ofy().delete().type(Gare.class);
-	}
-	
+//	
+//	/**
+//	 * Supprime l'entité Gare de la base de données DataStore.
+//	 */
+//	public void remove(){
+//		ofy().delete().type(Gare.class);
+//	}
+//	
 	/**
 	 * Met à jour une gare dans la base de données DataStore.
 	 * 
