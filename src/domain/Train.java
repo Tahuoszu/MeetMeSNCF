@@ -11,19 +11,20 @@ import com.googlecode.objectify.annotation.*;
 public class Train implements Serializable {
 
 	private static final long serialVersionUID = 7754525956851059700L;
-	// Numéro de train
-	@Id private String num;
-	
+	//Id du passage du train qui sera généré par google
+	@Id private long id;
+	// Numéro de train 
+	private String num;
 	//Date de passage du train dans la gare au format date pour pouvoir indexer par la date
 	private Date date;
 	// Code mission du train
-	private String miss;
+	@Unindex private String miss;
 	
 	// Terminus du train
-	private String term;
+	@Unindex private String term;
 	
 	// Etat remarquable du train
-	private String etat;
+	@Unindex private String etat;
 	
 	@Parent private Key<Gare> gare;
 	
@@ -51,7 +52,7 @@ public class Train implements Serializable {
 	}
 
 	/**
-	 * Retourne la date de d�part du train
+	 * Retourne la date de d�part du train
 	 * 
 	 * @return date
 	 */

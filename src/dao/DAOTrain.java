@@ -2,6 +2,7 @@ package dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import utils.XmlTools;
 
@@ -36,7 +37,7 @@ public class DAOTrain implements IDAOTrain {
 	 * @return train
 	 */
 	public Train find(String num) {
-		return ofy().load().type(Train.class).id(num).now();
+		return ofy().load().type(Train.class).filter("num ==",num).list().get(0);
 	}
 	
 	/**
@@ -68,7 +69,10 @@ public class DAOTrain implements IDAOTrain {
 	 * @param date
 	 * @return liste de trains
 	 */
-	public List<Train> findTrainByDate() {
+	public List<Train> findTrainByDate(){
+		//Mettre l'heure à l'heure
+		TimeZone pd = TimeZone.getTimeZone("Europe/Paris");
+		TimeZone.setDefault(pd);
 		// Chercher dans le DataStore
 		List<Train> trains= ofy().load().type(Train.class).
 				filter("date <", new Date()).list();
@@ -110,7 +114,7 @@ public class DAOTrain implements IDAOTrain {
 	 * @param train
 	 */
 	public void remove(Train train) {
-		ofy().delete().type(Train.class).id(train.getNum()).now();
+		ofy().delete().entity(train);
 	}
 	
 	/**
