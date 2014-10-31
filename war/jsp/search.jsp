@@ -22,7 +22,7 @@
       <jsp:param name="active" value="search" />
     </jsp:include>
   
-  	<h1><p class="text-center">Bienvenu sur MeetMeSNCF !</p></h1>
+  	<h1><p class="text-center">Bienvenue sur S.N.C.F !</p></h1>
   	<div class="container">
       <form method="post" action="/search" id="searchForm"
       	class="form-horizontal well col-md-offset-4 col-md-4">
@@ -30,17 +30,17 @@
 			<!-- Form Name -->
 			<legend>Rechercher un train</legend>
 			<!-- Select Basic -->
-			<div class="control-group">
+			<div class="form-group col-md-12">
 			  <label class="control-label" for="depart">Départ</label>
 			  <div class="controls">
-                <input type="text" name="depart" id="depart" class="input-large" />
+                <input type="text" name="depart" id="depart" class="form-control" />
 			  </div>
 			</div>
 			<!-- Select Basic -->
-			<div class="control-group">
+			<div class="form-group col-md-12">
 			  <label class="control-label" for="arrivee">Arrivée</label>
 			  <div class="controls">
-			    <input type="text" name="arrivee" id="arrivee" class="input-large" />
+			    <input type="text" name="arrivee" id="arrivee" class="form-control" />
 			  </div>
 			</div>
 			

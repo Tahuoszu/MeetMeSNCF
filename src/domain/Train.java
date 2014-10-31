@@ -17,8 +17,6 @@ public class Train implements Serializable {
 	private Date date;
 	//mettre dans le phraseur : Date(int year, int month, int date, int hrs, int min) pour cr�er le type date
 	
-
-	
 	// Code mission du train
 	private String miss;
 	

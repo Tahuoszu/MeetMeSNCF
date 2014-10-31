@@ -19,16 +19,18 @@ public class Gare implements Serializable {
 	 @Id private  String UIC;
 	
 	// Nom de la gare
-	 private String nomGare;
+	private String nomGare;
 	 
 	// Lignes passant par la gare
 	private List<String> lines;
 	 
 	// Numéro et type des lignes passant par la gare
-	//private final Map<String, String> lines;
+	//private Map<String, String> lines;
 
 	//Clé listegares pour lier les entités Gare
 	@Parent Key listegares;
+	
+	public Gare() {}
 	
 	/**
 	 * Crée une gare avec son identifiant UIC, le nom de la gare et les lignes

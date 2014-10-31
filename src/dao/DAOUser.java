@@ -39,14 +39,10 @@ public class DAOUser implements IDAOUser {
 		User u = ofy().load().type(User.class).id(login).now();
 		if (u == null)
 			return null;
-		System.out.println(password);
-		System.out.println(u.getPassword());
-		//if (Security.checkPassword(password, u.getPassword())) {
-		if (password.equals(u.getPassword())) {
-			System.out.println(u);
+		if (Security.checkPassword(password, u.getPassword()))
 			return u;
-		}
-		return null;
+		else
+			return null;
 	}
 
 	/**

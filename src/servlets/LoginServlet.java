@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import utils.Security;
 import dao.DAOFactory;
 import dao.IDAOUser;
 import forms.LoginValidation;
@@ -39,23 +38,19 @@ public class LoginServlet extends HttpServlet {
 		
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
-			
-		// On chiffre le mot de passe
-		password = Security.encryptPassword(password);
 		
 		LoginValidation lv = new LoginValidation(daoUser);
 		String page; 
 		
 		// Si le couple login - password est valide
 		if(lv.isValid(login, password)) {
-			System.out.println("Coucou fdp !!!!!");
 			HttpSession session = req.getSession();
 			session.setAttribute("login", login);
 			page = SEARCH_JSP;
 		}
-		// Si le couple login - password n'est pas valide : on reaffiche la page avec les erreurs
+		// Si le couple login - password n'est pas valide :
+		// on reaffiche la page avec les erreurs
 		else {
-			System.out.println("Coucou enculé !!!!!");
 			req.setAttribute("oldLogin", login);
 			req.setAttribute("errorLogin", true);
 			page = LOGIN_JSP;

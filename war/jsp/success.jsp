@@ -19,10 +19,11 @@
 
 	<form class="form-horizontal well col-md-offset-3 col-md-6" role="form">
 		<fieldset>
-			<legend><h3>Inscription Réussie !</h3></legend>
+			<legend><h2>Inscription Réussie !</h2></legend>
 			<div class="container">
-				<h4>Bienvenu(e) sur MeetMeSNCF !</h4><br />
-				Un mail de confirmation vous a été envoyé !<br /><br />
+				<h3>Bienvenue sur S.N.C.F !</h3>
+				<h4>Sortez et Nouez des Contacts Fortuitement  !</h4><br /><br />
+				Un mail de confirmation vous a été envoyé.<br /><br />
 				Félicitation ! Vous faites maintenant partie de la
 				communauté des gens<br /> qui se sentiront moins seuls dans les trains
 				délabrés de la SNCF !<br /><br />

@@ -8,7 +8,6 @@ import utils.XmlTools;
 import com.googlecode.objectify.ObjectifyService;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
-import domain.Gare;
 import domain.Requete;
 import domain.Train;
 
@@ -110,8 +109,6 @@ public class DAOTrain implements IDAOTrain {
 	public void remove(Train train) {
 		ofy().delete().type(Train.class).id(train.getNum()).now();
 	}
-	
-
 	
 	/**
 	 * Met à jour un train dans la base de données DataStore.

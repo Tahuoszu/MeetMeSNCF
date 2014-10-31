@@ -2,6 +2,7 @@ package tests;
 
 import java.util.ArrayList;
 
+import utils.Security;
 import dao.DAOFactory;
 import dao.IDAOUser;
 import domain.User;
@@ -12,8 +13,6 @@ public class testUser {
 		IDAOUser daoUser = DAOFactory.createDAOUser();
 		String[] pseudo = {"Saucisse", "Jambon", "Fromage", "Raclette", "Pain",
 				"Charcuterie", "Tartiflette", "Serrano", "Patate", "Cornichon"};
-		String[] password = {"12345", "12345", "12345", "12345", "12345",
-				"12345", "1345", "12345", "12345", "12345"};
 		String[] email = {"1@1.1", "2@2.2", "3@3.3", "4@4.4", "5@5.5", "6@6.6",
 				"7@7.7", "8@8.8", "9@9.9", "0@0.0"};
 		String[] nom = {"Ducon", "Dupré", "Ducu", "Durant", "Dur", "Durian",
@@ -24,8 +23,9 @@ public class testUser {
 		String[] sexe = {"Féminin", "Masculin", "Masculin", "Masculin",
 				"Féminin", "Masculin", "Masculin", "Masculin", "Féminin",
 				"Masculin"};
+		String password = Security.encryptPassword("12345");
 		for (int i = 0; i < 10; i++) {
-			daoUser.add(new User(pseudo[i], password[i], email[i], nom[i],
+			daoUser.add(new User(pseudo[i], password, email[i], nom[i],
 					prenom[i], "", new ArrayList<String>(), age[i], sexe[i]));
 		}
 	}

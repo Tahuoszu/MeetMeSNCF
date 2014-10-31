@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,6 @@ import dao.DAOFactory;
 import dao.IDAOGare;
 import dao.IDAOTrain;
 import dao.IDAOUser;
-import domain.Gare;
 import domain.Train;
 import domain.User;
 
@@ -58,11 +56,7 @@ public class SearchServlet extends HttpServlet {
 		
 		// Récupération de la requête utilisateur pour l'autocomplétion
 		String query_depart = request.getParameter("depart");
-		//List<String> depart = daoGare.findGare(query_depart);
-        List<String> depart = new ArrayList<String>();
-        depart.add("Vincennes");
-        depart.add("Val de Fontenay");
-        depart.add("Nanterres");
+		List<String> depart = daoGare.findGare(query_depart);
         
         Map<String,List<String> > map = new HashMap<String, List<String> >();
         map.put("suggestions", depart);
@@ -77,9 +71,9 @@ public class SearchServlet extends HttpServlet {
         pw.flush();
         
         // Génération de liste des gares d'arrivée
-        String query_arrivee = request.getParameter("arrivee");
-        //List<String> arrivee = daoGare.getGaresByLine(query_arrivee);
-        /*List<String> arrivee = new ArrayList<String>();
+        /*String query_arrivee = request.getParameter("arrivee");
+        List<String> arrivee = daoGare.getGaresByLine(query_arrivee);
+        List<String> arrivee = new ArrayList<String>();
         arrivee.add("Châtelet - Les Halles");
         arrivee.add("Gare de Lyon");
         arrivee.add("Nation");

@@ -44,8 +44,8 @@ public class DAOGare implements IDAOGare {
 	 */
 	public List<String> findGare(String gare) {
 		List<Gare> gares = ofy().load().type(Gare.class).
-				filter("field >=", gare).
-				filter("field <", gare + "\uFFFD").list();
+				filter("nomGare >=", gare).
+				filter("nomGare <", gare + "\uFFFD").list();
 		List<String> gares_name = new ArrayList<String>();
 		for (Gare g : gares) {
 			gares_name.add(g.getName());
@@ -97,7 +97,9 @@ public class DAOGare implements IDAOGare {
 		ofy().delete().type(Gare.class).id(gare.getUIC()).now();
 	}
 	
-	
+	/**
+	 * Supprime l'entité Gare de la base de données DataStore.
+	 */
 	public void remove(){
 		ofy().delete().type(Gare.class);
 	}

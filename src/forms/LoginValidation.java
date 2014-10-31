@@ -23,7 +23,6 @@ public class LoginValidation {
 			User user = daoUser.find(login, password);
 			if(user != null)
 				return true;
-			System.out.println("Hello enculé !!!");
 		}
 		return false;
 	}
