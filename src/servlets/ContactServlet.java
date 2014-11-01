@@ -12,7 +12,15 @@ import utils.EmailSender;
 public class ContactServlet extends HttpServlet {
 
     private static final long serialVersionUID = 5175463349863657818L;
-
+    private static final String CONTACT_JSP  = "/jsp/contact.jsp";
+    
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.getRequestDispatcher(CONTACT_JSP).forward(req, resp);
+    }
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

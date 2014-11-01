@@ -58,6 +58,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   </servlet-mapping>
  
   <servlet>
+    <servlet-name>contact</servlet-name>
+    <servlet-class>servlets.ContactServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>contact</servlet-name>
+    <url-pattern>/contact</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
     <servlet-name>chat</servlet-name>
     <servlet-class>servlets.ChatServlet</servlet-class>
   </servlet>
