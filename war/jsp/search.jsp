@@ -9,8 +9,8 @@
 <title>Recherche</title>
 
 <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet"
-  href="../css/bootstrapValidator.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/bootstrapValidator.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css" />
 <link type="text/css" rel="stylesheet" href="../css/style.css" />
 
 </head>
@@ -157,6 +157,7 @@
 
   <script type="text/javascript" src="/_ah/channel/jsapi"></script>
   <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>
   <script type="text/javascript" src="../js/javascript.js"></script>
