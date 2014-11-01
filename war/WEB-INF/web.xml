@@ -75,4 +75,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <url-pattern>/chat</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>logout</servlet-name>
+    <servlet-class>servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

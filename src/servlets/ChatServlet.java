@@ -38,10 +38,6 @@ public class ChatServlet extends HttpServlet {
       String sender = req.getParameter("sender");
       String message = req.getParameter("message");
       
-      System.out.println("POST==> expediteur=" + sender);
-      System.out.println("POST==> destinataire=" + channelKey);
-      System.out.println("POST==> message=" + message);
-      
       message = sender + "/" + message;
       
       // Envoi un message base sur le 'channelKey' 
@@ -63,13 +59,6 @@ public class ChatServlet extends HttpServlet {
         if(o != null) {
             
             String login = (String)session.getAttribute("login");
-/*
-            System.out.println("GET==> channelKey = "+channelKey);
-
-            // Creation dun Channel en utilisant le channelKey recu du client
-            String chatToken = channelService.createChannel(channelKey);
-*/
-            System.out.println("ChatServlet ==> login="+login);
             String chatToken = daoUser.find(login).getChatToken();
             
             // Envoi au client du chatToken
@@ -77,10 +66,6 @@ public class ChatServlet extends HttpServlet {
             resp.setContentType("text/plain");
             resp.getWriter().print(chatToken);
 
-            System.out.println("GET==> chatToken = "+chatToken);
         }
     }
-    
-    
-    
 }
