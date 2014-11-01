@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
+import dao.DAOUser;
 import dao.IDAOUser;
+import domain.User;
 import forms.LoginValidation;
 
 public class LoginServlet extends HttpServlet {
@@ -46,6 +49,11 @@ public class LoginServlet extends HttpServlet {
 		if(lv.isValid(login, password)) {
 			HttpSession session = req.getSession();
 			session.setAttribute("login", login);
+			
+			 // POUR TESTER =============================
+            List<User> connectedUsers = ((DAOUser)daoUser).findConnectedUsers();
+            session.setAttribute("usersConnectedList", connectedUsers);
+			
 			page = SEARCH_JSP;
 		}
 		// Si le couple login - password n'est pas valide :

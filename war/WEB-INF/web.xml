@@ -57,4 +57,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <url-pattern>/cronServlet</url-pattern>
   </servlet-mapping>
  
+  <servlet>
+    <servlet-name>chat</servlet-name>
+    <servlet-class>servlets.ChatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>chat</servlet-name>
+    <url-pattern>/chat</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

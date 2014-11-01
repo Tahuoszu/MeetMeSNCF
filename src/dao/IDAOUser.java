@@ -25,4 +25,10 @@ public interface IDAOUser extends IDAO<User> {
 	 * */
 	public List<User> findUser(String login);
 
+	/**
+	 * Méthode permettant de trouver les utilisateurs connectés.
+	 * @return la liste des utilisateurs connectés.
+	 */
+	public List<User> findConnectedUsers();
+	
 }

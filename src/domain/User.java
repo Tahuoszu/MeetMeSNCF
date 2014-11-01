@@ -20,6 +20,8 @@ public class User implements Serializable {
 	private String sexe;
 	private int age;
 	@Serialize private List<String> interests;
+	private boolean connected;
+	private String chatToken;
 	//private Key<User> listeamis;
 	//private Key<Train>
 	//private horaire
@@ -113,6 +115,22 @@ public class User implements Serializable {
 
     public void setInterests(List<String> interests) {
         this.interests = interests;
+    }
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+
+    public String getChatToken() {
+        return chatToken;
+    }
+
+    public void setChatToken(String chatToken) {
+        this.chatToken = chatToken;
     }
 
 }

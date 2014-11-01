@@ -1,5 +1,8 @@
 package forms;
 
+import com.google.appengine.api.channel.ChannelService;
+import com.google.appengine.api.channel.ChannelServiceFactory;
+
 import dao.DAOUser;
 import dao.IDAOUser;
 import domain.User;
@@ -21,8 +24,19 @@ public class LoginValidation {
 	public boolean isValid(String login, String password) {
 		if(daoUser instanceof DAOUser) {
 			User user = daoUser.find(login, password);
-			if(user != null)
+			if(user != null) {
+			    
+			    String channelKey = login;
+                ChannelService channelService = ChannelServiceFactory.getChannelService();
+                // Creation dun Channel en utilisant le channelKey recu du client
+                String chatToken = channelService.createChannel(channelKey);
+                user.setChatToken(chatToken);
+                
+                user.setConnected(true);
+                daoUser.update(user);
+			    
 				return true;
+			}
 		}
 		return false;
 	}

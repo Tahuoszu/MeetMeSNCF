@@ -1,5 +1,6 @@
 body {
   overflow-y: scroll; /* Pour que la barre de defilement ne decale pas tout */
+  padding-bottom: 40px;
 }
 
 .help-block {
@@ -22,8 +23,17 @@ body {
 	margin-left: 2px;
 }
 
-.login {
+.login, .receiver {
   color: #428BCA;
+}
+
+.sender {
+  color: black;
+}
+
+.center {
+  height: 180px;
+  overflow-y : scroll;
 }
 
 .signInFooter {

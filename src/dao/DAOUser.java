@@ -79,5 +79,9 @@ public class DAOUser implements IDAOUser {
 		ofy().save().entity(object);
 	}
 
-	
+    @Override
+    public List<User> findConnectedUsers() {
+        return ofy().load().type(User.class).filter("connected ==", true).list();
+    }
+
 }
