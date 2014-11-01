@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class SearchServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String SEARCH_JSP = "/jsp/search.jsp";
+	private static final String LOGIN_JSP  = "/jsp/login.jsp";
 	
 	private IDAOGare daoGare;
 	private IDAOTrain daoTrain;
@@ -53,41 +55,7 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		// Récupération de la requête utilisateur pour l'autocomplétion
-		String query_depart = request.getParameter("depart");
-		List<String> depart = daoGare.findGare(query_depart);
-        
-        Map<String,List<String> > map = new HashMap<String, List<String> >();
-        map.put("suggestions", depart);
-        Gson gson = (new GsonBuilder()).create();
-        // On crée une représentation JSON de notre map sous la forme
-        // d'une chaîne de caractères.
-        String json = gson.toJson(map);
-        
-        // On écrit du JSON sur le flux de sortie de la réponse HTTP.
-        PrintWriter pw = new PrintWriter(response.getOutputStream());
-        pw.print(json);
-        pw.flush();
-        
-        // Génération de liste des gares d'arrivée
-        /*String query_arrivee = request.getParameter("arrivee");
-        List<String> arrivee = daoGare.getGaresByLine(query_arrivee);
-        List<String> arrivee = new ArrayList<String>();
-        arrivee.add("Châtelet - Les Halles");
-        arrivee.add("Gare de Lyon");
-        arrivee.add("Nation");
-        map.put("suggestions", arrivee);
-        gson = (new GsonBuilder()).create();
-		json = gson.toJson(map);
-		
-		pw = new PrintWriter(response.getOutputStream());
-        pw.print(json);
-        pw.flush();*/
-        
-		response.setContentType("application/json");
-		response.setCharacterEncoding("ISO-8859-15");
-	    
+		doPost(request, response);
 	}
 
 	/**
@@ -96,20 +64,81 @@ public class SearchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		
-		if (session.getAttribute("login") != "login")
+		// Vérification de la session
+		/*HttpSession session = request.getSession();
+		if (session.getAttribute("login") != "login") {
 			session.removeAttribute("login");
-		
-		else {
+			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
+		}*/
 
-			String json;
-			String depart  = request.getParameter("depart");
-			String arrivee = request.getParameter("arrivee");
-			String user    = request.getParameter("user");
-			
+		// Récupération des requêtes d'autocomplétion
+		autoComplete(request, response);
+		
+		// Recherche de trains et/ou de membres
+		// search(request, response);
+		
+	}
+	
+	private void autoComplete(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		// En-tête de la réponse
+		response.setContentType("application/json");
+	    response.setCharacterEncoding("ISO-8859-15");
+		
+		// Récupération de la requête utilisateur pour l'autocomplétion
+		String depart  = request.getParameter("depart");
+        String arrivee = request.getParameter("arrivee");
+		String searchList = "";
+		List<String> list = new ArrayList<String>();
+		
+		try {
+	        //----------- Génération de liste des gares de départ ------------//
+			if ((depart != null) && (arrivee == null)) {
+				depart = depart.toUpperCase();
+				System.out.println("SearchServlet Depart : " + depart);
+				list = daoGare.findGare(depart);
+				for (String s : list)
+					System.out.print(s + " ");
+				System.out.println();
+				// Ecriture du JSON sur le flux de sortie de la réponse HTTP
+				searchList = new Gson().toJson(list);
+				response.getWriter().write(searchList);
+			}
+	        //----------- Génération de liste des gares d'arrivée ------------//
+			if ((depart == null) && (arrivee != null)) {
+		        arrivee = arrivee.toUpperCase();
+				System.out.println("SearchServlet Arrivee : " + arrivee);
+				list = daoGare.findGare(arrivee);
+		        //list = daoGare.getGaresByLine(arrivee);
+				for (String s : list)
+					System.out.print(s + " ");
+				System.out.println();
+				// Ecriture du JSON sur le flux de sortie de la réponse HTTP
+				searchList = new Gson().toJson(list);
+				response.getWriter().write(searchList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void search(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		// En-tête de la réponse
+		response.setContentType("application/json");
+	    response.setCharacterEncoding("ISO-8859-15");
+	    
+	    // Récupération de la requête utilisateur pour la recherche
+		String depart  = request.getParameter("depart");
+		String arrivee = request.getParameter("arrivee");
+		String user    = request.getParameter("user");
+		String json;
+		
+		try {
 			// Recherche des trains 
-			if (user.isEmpty()) {
+			if (user == null) {
 				// Convertit le nom des gares vers leur code UIC respectif
 				String num_depart  = daoGare.getGareUIC(depart);
 				String num_arrivee = daoGare.getGareUIC(arrivee);
@@ -117,23 +146,19 @@ public class SearchServlet extends HttpServlet {
 				List<Train> trains = daoTrain.findTrain(num_depart, num_arrivee);
 				request.setAttribute("train", trains);
 			    json = new Gson().toJson(trains);
-			
 			// Recherche des utilisateurs
 			} else {
 				List<User> users = daoUser.findUser(user);
 				request.setAttribute("users", users);
 				json = new Gson().toJson(users);
 			}
-
+			// Envoi de la requête
+		    response.getWriter().write(json);
 			// Recharge la page avec les résultats
 			request.getRequestDispatcher(SEARCH_JSP).forward(request, response);
-			
-			// Envoi de la requête
-			response.setContentType("application/json");
-		    response.setCharacterEncoding("ISO-8859-15");
-		    response.getWriter().write(json);
-			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-
+	
 }
