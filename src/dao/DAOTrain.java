@@ -34,11 +34,13 @@ public class DAOTrain implements IDAOTrain {
 	 * DataStore.
 	 * 
 	 * @param code UIC
+	 * @param gare
 	 * @return train
 	 */
-	public Train find(String num) {
-		return ofy().load().type(Train.class).filter("num ==",num).list().get(0);
+	public Train find(String num,Key<Gare> gare ) {
+		return ofy().load().type(Train.class).ancestor(gare).filter("num ==",num).list().get(0);
 	}
+	
 	
 	/**
 	 * Cherche une liste de trains partant de la gare de départ dans la base de 
@@ -50,8 +52,7 @@ public class DAOTrain implements IDAOTrain {
 	public List<Train> findTrain(String depart) {
 		// Chercher dans le DataStore
 		Key<Gare> gare = Key.create(Gare.class, depart);
-		List<Train> trains= ofy().load().type(Train.class).
-				filter("gare ==", gare).list();
+		List<Train> trains= ofy().load().type(Train.class).ancestor(gare).list();
 		// Envoyer une requête à la sncf
 		if (trains.isEmpty()) {
 			trains =  XmlTools.XmlToTrains(new Requete(depart, "").requeteSNCF());
@@ -74,8 +75,7 @@ public class DAOTrain implements IDAOTrain {
 		TimeZone pd = TimeZone.getTimeZone("Europe/Paris");
 		TimeZone.setDefault(pd);
 		// Chercher dans le DataStore
-		List<Train> trains= ofy().load().type(Train.class).
-				filter("date <", new Date()).list();
+		List<Train> trains= ofy().load().type(Train.class).filter("date <", new Date()).list();
 		// Envoyer une requête à la sncf
 		return trains; 
 	}
@@ -95,8 +95,7 @@ public class DAOTrain implements IDAOTrain {
 			return findTrain(depart);
 		// Chercher dans le DataStore
 		Key<Gare> gare = Key.create(Gare.class, depart);
-		List<Train> trains = ofy().load().type(Train.class).
-				filter("gare ==", gare).list();
+		List<Train> trains = ofy().load().type(Train.class).ancestor(gare).list();
 		// ToDo : Filtrer avec les trains qui passent par la station d'arrivée
 		// Envoyer une requête à la sncf
 		if (trains.isEmpty()) {
@@ -124,6 +123,12 @@ public class DAOTrain implements IDAOTrain {
 	 */
 	public void update(Train train) {
 		add(train);
+	}
+
+	@Override
+	public Train find(String str) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

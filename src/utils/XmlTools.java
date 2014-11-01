@@ -41,16 +41,18 @@ public class XmlTools {
     private static void parse(SAXParser saxParser, DefaultHandler handler, String xml) {
         try {
             // Parsing du XML
-            saxParser.parse(new InputSource(new StringReader(xml)), handler);
+            try {
+				saxParser.parse(new InputSource(new StringReader(xml)), handler);
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
-        catch (SAXParseException e) {
-            e.printStackTrace();
-        } 
-        catch (IOException | SAXException e) {
+        catch (IOException /*| SAXException*/ e) {
             e.printStackTrace();
         } 
     }
-
+    
     /**
      * Permet dobtenir une liste de trains a partir dun xml.
      * @param xml la chaine de caracteres xml.

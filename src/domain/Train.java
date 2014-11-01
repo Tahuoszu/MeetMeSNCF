@@ -12,7 +12,7 @@ public class Train implements Serializable {
 
 	private static final long serialVersionUID = 7754525956851059700L;
 	//Id du passage du train qui sera généré par google
-	@Id private long id;
+	@Id private Long id;
 	// Numéro de train 
 	private String num;
 	//Date de passage du train dans la gare au format date pour pouvoir indexer par la date
@@ -40,7 +40,8 @@ public class Train implements Serializable {
 		this.etat = etat;
 		this.gare = gare;
 	}
-
+	
+	
 	
 	/***
 	 * Retourne l'id de la gare
@@ -116,7 +117,6 @@ public class Train implements Serializable {
         this.term = term;
     }
 	
-
 	public void setGare(Key<Gare> gare) {
 		this.gare = gare;
 	}

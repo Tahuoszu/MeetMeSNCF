@@ -47,6 +47,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-name>search</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>cronServlet</servlet-name>
     <servlet-class>servlets.CronServlet</servlet-class>
@@ -55,4 +56,5 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-name>cronServlet</servlet-name>
     <url-pattern>/cronServlet</url-pattern>
   </servlet-mapping>
+ 
 </web-app>

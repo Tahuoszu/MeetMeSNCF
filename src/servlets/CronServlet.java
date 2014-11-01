@@ -26,6 +26,17 @@ public class CronServlet  extends HttpServlet{
 		super.init();
 		daoTrain = DAOFactory.createDAOTrain();
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		doDelete(req,resp);
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		doDelete(req,resp);
+	}
+	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

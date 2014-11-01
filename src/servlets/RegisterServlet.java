@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tests.TestRequete;
 import tests.testUser;
 import utils.EmailSender;
 import utils.ImportStation;
@@ -61,6 +62,7 @@ public class RegisterServlet extends HttpServlet {
 			daoUser.add(user);
 			testUser.createTestUsers();
 			ImportStation.init();
+			TestRequete.createTestRequete();
 			EmailSender.sendConfirmationEmail(user.getEmail());
 			resp.setHeader("Refresh", "5;url=login");
 			getServletContext().getRequestDispatcher(SUCCESS_JSP).forward(req, resp);
