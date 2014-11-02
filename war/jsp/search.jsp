@@ -21,14 +21,14 @@
   </jsp:include>
 
   <h1>
-    <p class="text-center">Bienvenue sur S.N.C.F !</p>
+    <p class="text-center">Bienvenue sur S.N.C.F. !</p>
   </h1>
   <div class="container">
 
     <div class="row">
       <div class="col-md-9">
 
-        <form method="post" action="/search" id="searchForm"
+        <form method="post" action="/searchGare" id="searchForm"
           class="form-horizontal well col-md-offset-4 col-md-4">
           <fieldset>
             <!-- Form Name -->
@@ -49,33 +49,35 @@
                   class="form-control" />
               </div>
             </div>
-
             <!-- Button -->
             <div class="control-group">
               <label class="control-label" for="recherche"></label>
               <div class="controls">
-                <button id="recherche" name="recherche"
+                <button id="searchtrain" name="searchtrain"
                   class="btn btn-primary">Rechercher</button>
               </div>
             </div>
           </fieldset>
+          
           <br />
-
+          
           <fieldset>
             <legend>Rechercher un membre</legend>
             <div class="form-group col-md-12">
               <input type="text" name="user" placeholder="Membre"
                 class="form-control" />
             </div>
+            <!-- Button -->
             <div class="control-group">
               <label class="control-label" for="recherche"></label>
               <div class="controls">
-                <button id="recherche" name="recherche"
+                <button id="searchuser" name="searchuser"
                   class="btn btn-primary">Rechercher</button>
               </div>
             </div>
           </fieldset>
         </form>
+        
       </div>
 
       <div class="col-md-3">
@@ -93,16 +95,16 @@
       </div>
 
     </div>
-    <div class="row">
+    <div id="resultat" class="row">
       <div class="col-md-offset-2 col-md-8">
-        <table class="table table-striped table-hover">
+        <table id="trains" class="table table-striped table-hover">
           <thead>
             <tr>
               <th>Nom</th>
+              <th>Horaire</th>
               <th>Code</th>
               <th>Destination</th>
               <th>Etat</th>
-              <th>Horaire</th>
             </tr>
           </thead>
           <tbody>
@@ -162,5 +164,6 @@
   <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>
   <script type="text/javascript" src="../js/javascript.js"></script>
   <script type="text/javascript" src="../js/autocompleter.js"></script>
+  <script type="text/javascript" src="../js/results.js"></script>
 </body>
 </html>

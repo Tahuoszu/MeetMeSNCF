@@ -39,14 +39,33 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-name>registerValidation</servlet-name>
     <url-pattern>/registerValidation</url-pattern>
   </servlet-mapping>
+  
   <servlet>
-    <servlet-name>search</servlet-name>
-    <servlet-class>servlets.SearchServlet</servlet-class>
+    <servlet-name>searchGare</servlet-name>
+    <servlet-class>servlets.SearchGareServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>search</servlet-name>
-    <url-pattern>/search</url-pattern>
+    <servlet-name>searchGare</servlet-name>
+    <url-pattern>/searchGare</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchTrain</servlet-name>
+    <servlet-class>servlets.SearchTrainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchTrain</servlet-name>
+    <url-pattern>/searchTrain</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchUser</servlet-name>
+    <servlet-class>servlets.SearchUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchUser</servlet-name>
+    <url-pattern>/searchUser</url-pattern>
+  </servlet-mapping>  
   
   <servlet>
     <servlet-name>cronServlet</servlet-name>

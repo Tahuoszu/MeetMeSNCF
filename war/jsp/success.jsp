@@ -21,7 +21,7 @@
 		<fieldset>
 			<legend><h2>Inscription Réussie !</h2></legend>
 			<div class="container">
-				<h3>Bienvenue sur S.N.C.F !</h3>
+				<h3>Bienvenue sur S.N.C.F. !</h3>
 				<h4>Sortez et Nouez des Contacts Fortuitement  !</h4><br /><br />
 				Un mail de confirmation vous a été envoyé.<br /><br />
 				Félicitation ! Vous faites maintenant partie de la

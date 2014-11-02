@@ -60,8 +60,14 @@ public class DAOGare implements IDAOGare {
 	 * @return code UIC de la gare
 	 */
 	public String getGareUIC(String gare) {
-		return ofy().load().type(Gare.class).
-				filter("nomGare ==", gare).list().get(0).getUIC();
+		String gare_name = "";
+		List<Gare> gares = ofy().load().type(Gare.class).
+				filter("nomGare ==", gare).list();
+		if (gares.isEmpty())
+			gare_name = "";
+		else
+			gare_name = gares.get(0).getUIC();
+		return gare_name;
 	}
 	
 	/**

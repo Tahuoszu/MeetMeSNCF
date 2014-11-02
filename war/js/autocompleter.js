@@ -17,7 +17,7 @@ $(document).ready(function() {
 			minLength : 2,
 			source : function(request, response) {
 				$.ajax({
-					url : "search",
+					url : "searchGare",
 					type : "POST",
 					data : {
 						depart : request.term
@@ -50,7 +50,7 @@ $(document).ready(function() {
 			minLength : 2,
 			source : function(request, response) {
 				$.ajax({
-					url : "search",
+					url : "searchGare",
 					type : "POST",
 					data : {
 						arrivee : request.term

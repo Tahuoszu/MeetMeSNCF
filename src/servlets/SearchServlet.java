@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class SearchServlet extends HttpServlet {
 	private IDAOGare daoGare;
 	private IDAOTrain daoTrain;
 	private IDAOUser daoUser;
-       
+    
     /**
      * Crée la Servlet SearchServlet
      */
@@ -65,18 +66,29 @@ public class SearchServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		// Vérification de la session
-		/*HttpSession session = request.getSession();
-		if (session.getAttribute("login") != "login") {
-			session.removeAttribute("login");
+		HttpSession session = request.getSession(false);
+		if (session.getAttribute("login") == null) {
+			session.invalidate();
 			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
-		}*/
-
+		}
+		
 		// Récupération des requêtes d'autocomplétion
 		autoComplete(request, response);
 		
 		// Recherche de trains et/ou de membres
 		// search(request, response);
-		
+		/*
+		Enumeration<?> paramNames = request.getParameterNames();
+		while(paramNames.hasMoreElements()) {
+			String paramName = (String)paramNames.nextElement();
+			System.out.println(paramName + " : ");
+			String[] paramValues =
+					request.getParameterValues(paramName);
+			for(int i=0; i < paramValues.length; i++) {
+                System.out.println(paramValues[i] + " ");
+            }
+		}
+		*/
 	}
 	
 	private void autoComplete(HttpServletRequest request,
@@ -121,6 +133,7 @@ public class SearchServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	private void search(HttpServletRequest request,
