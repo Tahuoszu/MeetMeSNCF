@@ -45,7 +45,7 @@ public class LogoutServlet extends HttpServlet {
         
         session.removeAttribute("login");
         
-        req.getRequestDispatcher("/").forward(req, resp);
+        req.getRequestDispatcher("/login").forward(req, resp);
     }
 
 }

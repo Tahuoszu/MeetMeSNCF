@@ -112,7 +112,7 @@
             class="requis">*</span></label>
           <div class="${classColD} selectContainer">
             <select name="sexe" class="form-control">
-              <option value=""></option>
+              <option value="">Choisissez votre sexe</option>
               <option value="male">Masculin</option>
               <option value="female">Féminin</option>
             </select>

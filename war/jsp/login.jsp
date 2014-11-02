@@ -49,7 +49,7 @@
         <div class="form-group col-md-12">
           <button class="btn btn-md btn-primary" type="submit">S'identifier</button>
           <div class="signInFooter">
-            Pas encore inscrit(e) ? <a href="jsp/register.jsp">S'inscrire</a>
+            Pas encore inscrit(e) ? <a href="/register">S'inscrire</a>
           </div>
         </div>
 

@@ -20,9 +20,7 @@
     <jsp:param name="active" value="search" />
   </jsp:include>
 
-  <h1>
-    <p class="text-center">Bienvenue sur S.N.C.F. !</p>
-  </h1>
+  <h1 class="text-center">Bienvenue sur S.N.C.F. !</h1>
   <div class="container">
 
     <div class="row">
@@ -51,7 +49,6 @@
             </div>
             <!-- Button -->
             <div class="control-group">
-              <label class="control-label" for="recherche"></label>
               <div class="controls">
                 <button id="searchtrain" name="searchtrain"
                   class="btn btn-primary">Rechercher</button>
@@ -69,7 +66,6 @@
             </div>
             <!-- Button -->
             <div class="control-group">
-              <label class="control-label" for="recherche"></label>
               <div class="controls">
                 <button id="searchuser" name="searchuser"
                   class="btn btn-primary">Rechercher</button>
