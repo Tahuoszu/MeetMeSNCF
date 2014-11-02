@@ -118,6 +118,32 @@ $(document).ready(function() {
 });
 
 //Chat
+var alreadyTalk = {};
+
+function majChat(receiver) {
+//  Si cest deja une personne avec laquelle on a une discussion en cours
+    if(alreadyTalk[receiver] === undefined) {
+        var menu = $('.dropdown-menu');
+
+        // On ajoute le destinataire choisi dans le menu de Discussions
+        $(menu).append(
+                '<li><a href="#'+receiver+'">' + 
+                receiver + 
+        "</a></li>");
+        alreadyTalk[receiver] = true;
+
+        var a = $(menu).find("a").last();
+        var receiverId = a.text();
+
+        // On cache tous les divs de chat
+        $(".chat").hide();
+        // et on affiche celle correspondant au destinataire choisi
+        $("div.chat[id='"+receiverId+"']").show();
+
+        afficherDiscussionOnClick(a);
+    }
+}
+
 function connectChat() {
     
     $.ajax({
@@ -139,10 +165,16 @@ function connectChat() {
         var receiver = array[0];
         var chaine = '#'+receiver+' > div.center';
         var text = "<span class='receiver'>" + receiver + "</span> : " + array[1] +"<br />";
+        
+        // Lors de la reception dun message, on affiche celui-ci dans la discussion
+        // correspondante, avec le nom de la personne qui la envoye
         $(chaine).append(text);
         
         $(".chat").hide();
         $("div.chat[id='"+receiver+"']").show();
+        
+        majChat(receiver);
+        
     };
     
     onError =  function(err) {
@@ -154,30 +186,19 @@ function connectChat() {
     };
 }
 
-var alreadyTalk = {};
 
+
+// Lorsque lutilisateur clique sur le bouton Chatter (et ce faisant choisi un interlocuteur)
 $(".talk").click( function() {
     
     var div = $(this).parent();
     var receiver = $(div).find('.destinataire').attr('value');
 
-    if(alreadyTalk[receiver] === undefined) {
-        var menu = $('.dropdown-menu');
-        $(menu).append(
-                '<li><a href="#'+receiver+'">' + 
-                receiver + 
-                "</a></li>");
-        alreadyTalk[receiver] = true;
-        
-       var a = $(menu).find("a").last();
-       var receiverId = a.text();
-       $(".chat").hide();
-       $("div.chat[id='"+receiverId+"']").show();
-        
-        afficherDiscussionOnClick(a);
-    }
+    majChat(receiver);
 });
 
+// Lorsque lutilisateur clique sur une personne dans la liste des
+// discussion, on affiche la discussion correspondante.
 function afficherDiscussionOnClick(a) {
     a.click(function() {
         var receiverId = $(this).text();
@@ -194,6 +215,7 @@ function generateChats() {
     });
 }
 
+// Genere le code html correspondant a une discussion avec une personne
 function generateChat(receiver) {
     var chat = '<div class="chat" id="'+ receiver +'">'
             + '  <div class="center"></div>'
@@ -209,16 +231,21 @@ function generateChat(receiver) {
 
 generateChats();
 
+// Lorsque lutilisateur clique sur le bouton pour envoyer un message de chat
 $('.send').click(function() {
     var button = $(this);
     var chat = button.parents(".chat");
     
+    // On recupere le message, le login de lutilisateur 
+    // et le login du destinataire (channelKey).
     var message = chat.find('.message').val();
     var login = chat.parent().find('.login').val();
     var channelKey = chat.attr('id');
-    
+        
+    // On affiche le message que lutilisateur envoie.
     chat.find('.center').append("<span class='sender'>" + login + "</span> : " + message + "<br />");
 
+    // Envoi du message au serveur via une requete POST
     $.ajax({
         url: '/chat',
         type: 'POST',
@@ -230,6 +257,11 @@ $('.send').click(function() {
         success: function(data) {},
         complete:function() {}      
     });
+    
+    // On vide les textareas
+    $('.message').val('');
 });
 
 $(".chat").hide();
+
+

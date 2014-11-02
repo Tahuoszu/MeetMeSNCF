@@ -30,7 +30,6 @@ public class ChatServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-      System.out.println("Do POST");
         
       // login du destinataire
       String channelKey = req.getParameter("channelKey");
@@ -50,8 +49,6 @@ public class ChatServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        
-        System.out.println("Do GET");
         
         HttpSession session = req.getSession();
       
