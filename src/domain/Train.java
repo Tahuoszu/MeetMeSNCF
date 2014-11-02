@@ -3,6 +3,8 @@ package domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Transient;
+
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.*;
 
@@ -120,5 +122,9 @@ public class Train implements Serializable {
 	public void setGare(Key<Gare> gare) {
 		this.gare = gare;
 	}
-
+	
+	@Transient
+	public Key<Train> getKey(){
+		return Key.create(Train.class, id);
+	}
 }

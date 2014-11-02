@@ -27,9 +27,10 @@ public interface IDAOGare extends IDAO<Gare> {
 	/**
 	 * Retourne la liste des gares d'une ligne à partir d'une gare.
 	 * 
-	 * @param gare
+	 * @param depart
+	 * @param arrivee
 	 * @return liste de gare
 	 */
-	public List<String> getGaresByLine(String gare);
+	public List<String> getGaresByLine(String depart, String arrivee);
 	
 }

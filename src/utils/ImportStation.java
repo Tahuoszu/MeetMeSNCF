@@ -19,21 +19,21 @@ public class ImportStation {
 	// Fichier CVS contenant les informations sur les gares
 	private final static String FILENAME = "sncf-lignes-par-gares-idf.csv";
 	
+	// Chemin du fichier contenant la liste des gares
+	private final static String STATIONS = "src/liste_gares.txt";
+	
 	// Première ligne du fichier CVS
 	private final static String[] ARRAY = {"CODE_UIC", "LIBELLE_POINT_ARRET",
 		"TRAIN", "RER", "TRAM", "BUS", "A", "B", "C", "D", "E", "H", "J", "K",
 		"L", "N", "P", "R", "U", "T4", "TER"};
 	
-	// Pour tester la lecture du fichier CVS
-	/*public static void main(String[] args) {
-		List<Gare> gares = getGareList();
-		for (Gare gare : gares)
-			System.out.println(gare);
-	}*/
-	
+	/**
+	 * Importe les stations dans la base de données DataStore à partir de la
+	 * liste des gares
+	 */
 	public static void init() {
-		// Crée la liste des gares à partir du fichier CSV
-		List<Gare> gares = getGareList();
+		// Récupère les gares à ajouter dans la base de données
+		List<Gare> gares = filterGare();
 		// Ajoute les gares dans la base de données DataStore
 		addGare(gares);
 	}
@@ -149,12 +149,61 @@ public class ImportStation {
 	public static void addGare(List<Gare> gares) {
 		DAOGare daogare = new DAOGare();
 		Key cle = KeyFactory.createKey("ListeGares", "ListeGares");
-		//daogare.remove();
+		daogare.remove();
 		for (Gare gare : gares) {
-			//daogare.remove(gare);
+			daogare.remove(gare);
 			gare.setKey(cle);
 			daogare.add(gare);
 		}
+	}
+	
+	/**
+	 * Récupère la liste des gares avec leur code UIC à partir d'un fichier
+	 * 
+	 * @return liste des gares avec leur code UIC
+	 */
+	private static List<String> readGareFromFile() {
+		List<String> liste = new LinkedList<String>();
+		try {
+			BufferedReader buff = new BufferedReader(
+					new InputStreamReader(new 
+				      java.io.FileInputStream(STATIONS), "ISO-8859-15"));
+			try {
+				String line, gare, uic;
+				int line_length;
+				while ((line = buff.readLine()) != null) {
+					line_length = line.length();
+					gare = line.substring(0, line_length - 8);
+					uic = line.substring(line_length - 8, line_length);
+					//System.out.println(gare + "\t" + uic);
+					liste.add(uic);
+				}
+			} finally {
+				buff.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+	
+	/**
+	 * Filtre les gares à ajouter dans la base de données Datastore
+	 * 
+	 * @return liste des gares
+	 */
+	public static List<Gare> filterGare() {
+		List<String> uic = readGareFromFile();
+		List<Gare> gares = getGareList();
+		List<Gare> liste = new LinkedList<Gare>();
+		for(String l : uic) {
+			for (Gare g : gares) {
+				if (g.getUIC().equals(l)) {
+					liste.add(g);
+				}
+			}
+		}
+		return liste;
 	}
 	
 }

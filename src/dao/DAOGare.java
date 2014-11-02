@@ -73,14 +73,22 @@ public class DAOGare implements IDAOGare {
 	/**
 	 * Retourne la liste des gares d'une ligne à partir d'une gare.
 	 * 
-	 * @param gare
+	 * @param depart
+	 * @param arrivee
 	 * @return liste de gare
 	 */
-	public List<String> getGaresByLine(String gare) {
+	public List<String> getGaresByLine(String depart, String arrivee) {
+		// Liste des gares d'arrivée à retourner
+		List<String> gares_arrivee = new ArrayList<String>();
+		// Récupère la gare de départ
+		List<Gare> liste = ofy().load().type(Gare.class).
+				filter("nomGare ==", depart).list();
+		// Absence de matching de la gare de départ avec son nom
+		if (depart.isEmpty())
+			return gares_arrivee;
 		// Récupère la liste des lignes
-		List<String> lines = ofy().load().type(Gare.class).
-				filter("nomGare ==", gare).list().get(0).getLines();
-		// Récupère la liste des gares
+		List<String> lines = liste.get(0).getLines();
+		// Récupère la liste des gares d'arrivée
 		List<Gare> gares = new ArrayList<Gare>();
 		for (String line : lines) {
 			gares.addAll(ofy().load().type(Gare.class).
@@ -91,7 +99,12 @@ public class DAOGare implements IDAOGare {
 		for (Gare g : gares) {
 			gares_name.add(g.getName());
 		}
-		return gares_name;
+		// Récupère le nom des gares avec la query du nom de la gare d'arrivee
+		for (String n : gares_name) {
+			if (n.startsWith(arrivee))
+				gares_arrivee.add(n);
+		}
+		return gares_arrivee;
 	}
 	
 	/**
@@ -102,14 +115,14 @@ public class DAOGare implements IDAOGare {
 	public void remove(Gare gare) {
 		ofy().delete().type(Gare.class).id(gare.getUIC()).now();
 	}
-//	
-//	/**
-//	 * Supprime l'entité Gare de la base de données DataStore.
-//	 */
-//	public void remove(){
-//		ofy().delete().type(Gare.class);
-//	}
-//	
+	
+	/**
+	 * Supprime l'entité Gare de la base de données DataStore.
+	 */
+	public void remove(){
+		ofy().delete().type(Gare.class);
+	}
+	
 	/**
 	 * Met à jour une gare dans la base de données DataStore.
 	 * 

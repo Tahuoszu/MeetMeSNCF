@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+
 import domain.User;
 
 public interface IDAOUser extends IDAO<User> {
@@ -31,4 +32,14 @@ public interface IDAOUser extends IDAO<User> {
 	 */
 	public List<User> findConnectedUsers();
 	
+	/**
+	 * Méthode permettant de mettre à jour le train que va prendre
+	 * @param login de l'utilisateur
+	 * @param numéro du train à prendre
+	 * @param numero uic de la gare  
+	 */
+	public void updateTrain(String login, String num, String uic);
+	
+	
+	public List<User> findUsers (String train, String user);
 }

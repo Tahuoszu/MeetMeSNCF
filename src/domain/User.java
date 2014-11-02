@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.List;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.*;
 
 @Entity
@@ -23,7 +24,7 @@ public class User implements Serializable {
 	private boolean connected;
 	private String chatToken;
 	//private Key<User> listeamis;
-	//private Key<Train>
+	@Parent private Key<Train> train;
 	//private horaire
 	
 	
@@ -42,6 +43,7 @@ public class User implements Serializable {
 		this.interests = interests;
 		this.age = age;
 		this.sexe = sexe;
+		train = null;
 	}
 	
 
@@ -132,5 +134,14 @@ public class User implements Serializable {
     public void setChatToken(String chatToken) {
         this.chatToken = chatToken;
     }
+
+	public Key<Train> getTrain() {
+		return train;
+	}
+
+	public void setTrain(Key<Train> train) {
+		this.train = train;
+	}
+    
 
 }

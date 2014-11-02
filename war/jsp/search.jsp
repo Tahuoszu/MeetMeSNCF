@@ -99,8 +99,7 @@
               <th>Nom</th>
               <th>Horaire</th>
               <th>Code</th>
-              <th>Destination</th>
-              <th>Etat</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +111,7 @@
 
     <div class="row">
       <div class="col-md-offset-2 col-md-8">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="users">
           <thead>
             <tr>
               <th>Pseudo</th>
@@ -123,7 +122,9 @@
             </tr>
           </thead>
           <tbody>
+          
             <c:forEach var="user" items="${usersConnectedList}">
+            
               <tr>
                 <td class="login"><c:out value="${user.login}" /></td>
                 <td><c:if test="${user.sexe eq 'male'}">Masculin</c:if>
@@ -136,6 +137,7 @@
                     </c:forEach>
                   </ul>
                 </td>
+                
                 <td>
 
                   <div class="chooseReceiver">
@@ -146,6 +148,7 @@
                 </td>
               </tr>
             </c:forEach>
+             
           </tbody>
         </table>
       </div>

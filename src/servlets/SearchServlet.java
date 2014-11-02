@@ -66,11 +66,12 @@ public class SearchServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		// Vérification de la session
-		HttpSession session = request.getSession(false);
+		/*
+	    HttpSession session = request.getSession(false);
 		if (session.getAttribute("login") == null) {
 			session.invalidate();
 			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
-		}
+		}*/
 		
 		// Récupération des requêtes d'autocomplétion
 		autoComplete(request, response);

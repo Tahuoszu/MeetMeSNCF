@@ -58,11 +58,12 @@ public class SearchTrainServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		// Vérification de la session
-		HttpSession session = request.getSession(false);
+		/*
+	    HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("login") == null) {
 			session.invalidate();
 			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
-		}
+		}*/
 		
 		// Recherche de trains
 		searchTrain(request, response);
@@ -85,9 +86,7 @@ public class SearchTrainServlet extends HttpServlet {
 			String arrivee = request.getParameter("arrivee");
 			System.out.println("SearchTrainServlet Depart : " + depart);
 			System.out.println("SearchTrainServlet Arrivee : " + arrivee);
-			// Test
-			depart = "VERSAILLES CHANTIERS";
-			arrivee = "INVALIDES";
+	
 			// Convertit le nom des gares vers leur code UIC respectif
 			String num_depart  = daoGare.getGareUIC(depart);
 			String num_arrivee = daoGare.getGareUIC(arrivee);
@@ -100,6 +99,7 @@ public class SearchTrainServlet extends HttpServlet {
 					new TypeToken<List<Train>>(){}.getType());
 			JsonArray jsonArray = element.getAsJsonArray();
 			response.getWriter().print(jsonArray);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

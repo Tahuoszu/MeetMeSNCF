@@ -19,7 +19,7 @@ public class SearchGareServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String LOGIN_JSP  = "/jsp/login.jsp";
-	
+
 	private IDAOGare daoGare;
        
     /**
@@ -52,11 +52,13 @@ public class SearchGareServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		// Vérification de la session
+	    /*
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("login") == null) {
 			session.invalidate();
 			request.getRequestDispatcher(LOGIN_JSP).forward(request, response);
 		}
+		*/
 
 		// Récupération des requêtes d'autocomplétion
 		autoComplete(request, response);
@@ -80,7 +82,7 @@ public class SearchGareServlet extends HttpServlet {
 	        //----------- Génération de liste des gares de départ ------------//
 			if (depart != null) {
 				depart = depart.toUpperCase();
-				System.out.println("SearchGareServlet Depart : " + depart);
+				System.out.println("===>SearchGareServlet Depart : " + depart);
 				list = daoGare.findGare(depart);
 				for (String s : list)
 					System.out.print(s + " ");
@@ -92,9 +94,11 @@ public class SearchGareServlet extends HttpServlet {
 	        //----------- Génération de liste des gares d'arrivée ------------//
 			if (arrivee != null) {
 		        arrivee = arrivee.toUpperCase();
-				System.out.println("SearchGareServlet Arrivee : " + arrivee);
-				list = daoGare.findGare(arrivee);
-		        //list = daoGare.getGaresByLine(arrivee);
+		        String departChoosen = request.getParameter("departChoosen");
+		        System.out.println("===>DEPART : " + departChoosen);
+				System.out.println("===>SearchGareServlet Arrivee : " + arrivee);
+				//list = daoGare.findGare(arrivee);
+		        list = daoGare.getGaresByLine(departChoosen, arrivee);
 				for (String s : list)
 					System.out.print(s + " ");
 				System.out.println();

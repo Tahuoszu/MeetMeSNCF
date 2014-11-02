@@ -113,5 +113,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <servlet-name>logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>takeTrain</servlet-name>
+    <servlet-class>servlets.TakeTrainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>takeTrain</servlet-name>
+    <url-pattern>/takeTrain</url-pattern>
+  </servlet-mapping>
   
 </web-app>
